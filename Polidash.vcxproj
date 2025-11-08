@@ -130,6 +130,7 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Figura.hpp" />
+    <ClInclude Include="FiguraJugador.hpp" />
     <ClInclude Include="figuritasnpc.hpp" />
     <ClInclude Include="PoliGame.h">
       <FileType>CppForm</FileType>
