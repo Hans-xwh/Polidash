@@ -63,7 +63,7 @@ namespace Polidash {
 			this->button1->ForeColor = System::Drawing::SystemColors::ControlLightLight;
 			this->button1->ImageAlign = System::Drawing::ContentAlignment::TopRight;
 			this->button1->Location = System::Drawing::Point(566, 403);
-			this->button1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->button1->Margin = System::Windows::Forms::Padding(2);
 			this->button1->Name = L"button1";
 			this->button1->RightToLeft = System::Windows::Forms::RightToLeft::No;
 			this->button1->Size = System::Drawing::Size(172, 98);
@@ -81,7 +81,8 @@ namespace Polidash {
 			this->Controls->Add(this->button1);
 			this->ForeColor = System::Drawing::SystemColors::ControlLight;
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
-			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->Margin = System::Windows::Forms::Padding(2);
+			this->MaximizeBox = false;
 			this->Name = L"Victoria";
 			this->Text = L"PoliDash: Victoria";
 			this->ResumeLayout(false);

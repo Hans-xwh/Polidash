@@ -81,14 +81,16 @@ namespace Polidash {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(801, 453);
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
-			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->KeyPreview = true;
+			this->Margin = System::Windows::Forms::Padding(2);
+			this->MaximizeBox = false;
 			this->Name = L"PoliGame";
 			this->Text = L"PoliDash: Game";
 			this->Load += gcnew System::EventHandler(this, &PoliGame::PoliGame_Load);
-			this->ResumeLayout(false);
-			this->KeyPreview = true;
 			this->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &PoliGame::PoliGame_KeyDown);
 			this->KeyUp += gcnew System::Windows::Forms::KeyEventHandler(this, &PoliGame::PoliGame_KeyUp);
+			this->ResumeLayout(false);
+
 		}
 #pragma endregion
 	private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {

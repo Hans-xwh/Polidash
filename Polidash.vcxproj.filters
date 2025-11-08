@@ -27,6 +27,9 @@
     <ClCompile Include="Derrota.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Instrucciones.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PoliStart.h">
@@ -45,6 +48,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FiguraJugador.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Controladora.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="figuritasnpc.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Instrucciones.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

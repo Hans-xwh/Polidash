@@ -63,7 +63,7 @@ namespace Polidash {
 			this->button1->ForeColor = System::Drawing::SystemColors::ControlLightLight;
 			this->button1->ImageAlign = System::Drawing::ContentAlignment::TopRight;
 			this->button1->Location = System::Drawing::Point(615, 369);
-			this->button1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->button1->Margin = System::Windows::Forms::Padding(2);
 			this->button1->Name = L"button1";
 			this->button1->RightToLeft = System::Windows::Forms::RightToLeft::No;
 			this->button1->Size = System::Drawing::Size(172, 98);
@@ -80,7 +80,8 @@ namespace Polidash {
 			this->ClientSize = System::Drawing::Size(790, 470);
 			this->Controls->Add(this->button1);
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
-			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->Margin = System::Windows::Forms::Padding(2);
+			this->MaximizeBox = false;
 			this->Name = L"Derrota";
 			this->Text = L"Polidash: Derrota";
 			this->ResumeLayout(false);

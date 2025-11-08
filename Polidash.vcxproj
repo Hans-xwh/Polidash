@@ -121,6 +121,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Derrota.cpp" />
+    <ClCompile Include="Instrucciones.cpp" />
     <ClCompile Include="PoliGame.cpp" />
     <ClCompile Include="PoliStart.cpp" />
     <ClCompile Include="Victoria.cpp" />
@@ -133,6 +134,9 @@
     <ClInclude Include="Figura.hpp" />
     <ClInclude Include="FiguraJugador.hpp" />
     <ClInclude Include="figuritasnpc.hpp" />
+    <ClInclude Include="Instrucciones.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="PoliGame.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -146,6 +150,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Derrota.resx">
       <DependentUpon>Derrota.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Instrucciones.resx">
+      <DependentUpon>Instrucciones.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PoliGame.resx">
       <DependentUpon>PoliGame.h</DependentUpon>
