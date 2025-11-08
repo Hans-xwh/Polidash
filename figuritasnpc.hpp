@@ -15,7 +15,7 @@ private:
  	bool isPowerUp;
 
 public:
-    FiguritasNPC(int X, int Y,int S, bool powerUp, int tramo) : Figura(X, Y, S){
+    FiguritasNPC(int X, int Y,int S, int C, bool powerUp, int tramo) : Figura(X, Y, S, C){
         Random^ r = gcnew Random();
         isPowerUp = powerUp;
         this->tramo = tramo;

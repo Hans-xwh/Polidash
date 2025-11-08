@@ -3,6 +3,7 @@
 #include "Figura.hpp"
 #include "figuritasnpc.hpp"
 #include "FiguraJugador.hpp"
+#include "Controladora.hpp"
 
 namespace Polidash {
 
@@ -25,9 +26,10 @@ namespace Polidash {
 			//
 			//TODO: Add the constructor code here
 			//
-			jugador = new Jugador(100, 100, t1);
-			testFig = new Figura(10, 10, 200, Shapes::HEXAGONO);
-			pruebita = new FiguritasNPC(10, 10, 100, true, 1);
+			//jugador = new Jugador(100, 100, t1);
+			//testFig = new Figura(10, 10, 200, Shapes::HEXAGONO);
+			//pruebita = new FiguritasNPC(10, 10, 100, true, 1);
+			juego = new Juego();
 		}
 
 	protected:
@@ -52,6 +54,7 @@ namespace Polidash {
 		Figura* testFig;
 		FiguritasNPC* pruebita;
 		Jugador* jugador;
+		Juego* juego;
 		Dir teclapulsada;
 
 
@@ -101,7 +104,10 @@ namespace Polidash {
 		//Operaciones de dibujado aqui
 		bCanvas->Graphics->Clear(Color::White);	//Despues cambiar el fondo?
 
+		juego->DrawAll(bCanvas->Graphics);
+
 		//mover y dibujar
+		/*
 		pruebita->autoMove();
 		pruebita->draw(bCanvas->Graphics);
 
@@ -110,6 +116,7 @@ namespace Polidash {
 		jugador->draw(bCanvas->Graphics);
 
 		testFig->draw(bCanvas->Graphics);
+		*/
 
 		//Render
 		bCanvas->Render(g);
@@ -123,18 +130,19 @@ namespace Polidash {
     private: System::Void PoliGame_KeyDown(System::Object^ sender, KeyEventArgs^ e) {
 		teclapulsada = Dir::NADA;
 	
+		/*	Todo esto hay que rehacerlo usando la controladora
 		if (e->KeyCode == Keys::Up)		teclapulsada = Dir::ARRIBA;
 		if (e->KeyCode == Keys::Down)	teclapulsada = Dir::ABAJO;
 		if (e->KeyCode == Keys::Right)	teclapulsada = Dir::DERECHA;
 		if (e->KeyCode == Keys::Left)	teclapulsada = Dir::IZQUIERDA;
 
-		jugador->mover(teclapulsada);
+		jugador->mover(teclapulsada);*/
     }
 
     private: System::Void PoliGame_KeyUp(System::Object^ sender, KeyEventArgs^ e) {
-	    if (e->KeyCode == Keys::Up || e->KeyCode == Keys::Down || e->KeyCode == Keys::Left || e->KeyCode == Keys::Right) {
+	    /*if (e->KeyCode == Keys::Up || e->KeyCode == Keys::Down || e->KeyCode == Keys::Left || e->KeyCode == Keys::Right) {
 	    jugador->mover(NADA);
-		}
+		}*/
 	}
 	};
 }

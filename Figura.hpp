@@ -31,16 +31,18 @@ protected:
 	int speed;	//Quiza no se usa
 	int size;		//todas las figuras son "cuadradas"
 	int numero;
+	int color;
 	Shapes shape;
 
 public:
-	Figura(int X, int Y, int T=200, Shapes S = Shapes::TRIANGULO) {	//Default triangulo de 200
+	Figura(int X, int Y, int T=200, int C=0, Shapes S = Shapes::TRIANGULO) {	//Default triangulo de 200
 		this->x = X;
 		this->y = Y;
 		speed = 5;
 		size = T;
 		shape = S;
 		numero = 0;
+		color = C;
 	}
 
 	array<Point>^ damePuntos() {	//basado en la figura actual retorna los puntos convertidos a coordenadas globales
@@ -143,12 +145,26 @@ public:
 		}
 	}
 
+	Brush^ dameBrocha(int c) {
+		switch (c) {
+		case 0:
+			return Brushes::Red;
+		case 1:
+			return Brushes::Yellow;
+		case 2:
+			return Brushes::Blue;
+		default:
+			return Brushes::Blue;
+		}
+	}
+
 	void draw(Graphics^ g) {
 		//shape = Shapes(10);		//Esta linea solo para pruebas, la forma no se debe fijar aqui
+		Brush^ b = dameBrocha(color);
 
 		array<Point>^ puntos = damePuntos();
-		g->FillPolygon(Brushes::Aqua, puntos);
-		g->DrawPolygon(Pens::Red, puntos);
+		g->FillPolygon(b, puntos);
+		g->DrawPolygon(Pens::Black, puntos);
 
 		//Numero interior
 		if (numero >= 0) {
@@ -171,6 +187,7 @@ public:
 	int getX() {return x;}
 	int getY() { return y; }
 	int getNum() { return numero; }
+	int getColor() { return color; }
 
 	Rectangle getRect() {
 		return Rectangle(x, y, size, size);
