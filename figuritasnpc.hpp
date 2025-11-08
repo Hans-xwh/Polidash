@@ -10,19 +10,19 @@ class FiguritasNPC : public Figura
 {
 
 private:
-	Color colornpc;
 	int value;
 	int tramo;
  	bool isPowerUp;
 
 public:
-	FiguritasNPC(int X, int Y, Color c, bool powerUp, int tramo) : Figura(X, Y), colornpc(c), isPowerUp(powerUp), tramo(tramo){
-
-	value = rand() % 5 + 1;
-	shape = Shapes(rand() % 8 + 3);
-	dx = dy = 0;
-    colornpc = c;
-
+    FiguritasNPC(int X, int Y,int S, bool powerUp, int tramo) : Figura(X, Y, S){
+        Random^ r = gcnew Random();
+        isPowerUp = powerUp;
+        this->tramo = tramo;
+        value = r->Next(0, 9);
+        shape = Shapes(r->Next(3, 10));
+	    dx = dy = 0;
+        size = S;
 	}
 
     void autoMove() override {
@@ -48,16 +48,15 @@ public:
         y += dy;
     }
 
-    void draw(Graphics^ g) {
+    /*void draw(Graphics^ g) {    //No me implementes otra funcion draw, no es necesaria. *Emoji calavera*
         array<Point>^ puntos = damePuntos();
-        SolidBrush^ solid = gcnew SolidBrush(colornpc);
+        SolidBrush^ solid = gcnew SolidBrush();
         g->FillPolygon(solid, puntos);
         g->DrawPolygon(Pens::Black, puntos);
-    }
+    }*/
 
     int getValue() { return value; }
     bool getIsPowerUp() { return isPowerUp;  }
-    Color getColornpc() { return colornpc;  }
     int getTramo() { return tramo; }
 
     bool fueraPantalla(Graphics^ g) {

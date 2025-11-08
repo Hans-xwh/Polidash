@@ -25,8 +25,8 @@ namespace Polidash {
 			//TODO: Add the constructor code here
 			//
 
-			testFig = new Figura(10, 10);
-			pruebita = new FiguritasNPC(10, 10, Color::Red, true, 1);
+			testFig = new Figura(10, 10, 200, Shapes::HEXAGONO);
+			pruebita = new FiguritasNPC(10, 10, 100, true, 1);
 		}
 
 	protected:
@@ -71,13 +71,14 @@ namespace Polidash {
 			// 
 			// PoliGame
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1068, 558);
+			this->ClientSize = System::Drawing::Size(801, 453);
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
-			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->Name = L"PoliGame";
 			this->Text = L"PoliDash: Game";
+			this->Load += gcnew System::EventHandler(this, &PoliGame::PoliGame_Load);
 			this->ResumeLayout(false);
 
 		}
@@ -107,6 +108,8 @@ namespace Polidash {
 		delete bCanvas;
 		delete myBuffer;
 		delete g;
+	}
+	private: System::Void PoliGame_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
 	};
 }

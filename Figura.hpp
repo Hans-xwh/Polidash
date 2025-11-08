@@ -33,12 +33,13 @@ protected:
 	Shapes shape;
 
 public:
-	Figura(int X, int Y, Shapes S = Shapes::TRIANGULO) {	//Default triangulo
+	Figura(int X, int Y, int T=200, Shapes S = Shapes::TRIANGULO) {	//Default triangulo de 200
 		this->x = X;
 		this->y = Y;
 		speed = 5;
-		size = 200;
+		size = T;
 		shape = S;
+		numero = 0;
 	}
 
 	array<Point>^ damePuntos() {	//basado en la figura actual retorna los puntos convertidos a coordenadas globales
@@ -142,14 +143,16 @@ public:
 	}
 
 	void draw(Graphics^ g) {
-		shape = Shapes(10);		//Esta linea solo para pruebas, la forma no se debe fijar aqui
+		//shape = Shapes(10);		//Esta linea solo para pruebas, la forma no se debe fijar aqui
 
 		array<Point>^ puntos = damePuntos();
 		g->FillPolygon(Brushes::Aqua, puntos);
 		g->DrawPolygon(Pens::Red, puntos);
 
 		//Numero interior
-		//>DrawString(System::String)
+		if (numero >= 0) {
+			g->DrawString(numero.ToString(), gcnew Font("Arial", size / 8), Brushes::Black, Rectangle(x + (size/2)-(size/10), y + (size / 2)- (size / 10), size / 8, size / 8 + 10));
+		}
 	}
 
 	virtual void autoMove() {
@@ -160,9 +163,13 @@ public:
 	void setDx(int DX) { dx = DX; }
 	void setDy(int DY) { dy = DY; }
 	void setSize(int S) { size = S; }
+	void setNumero(int N) { numero = N; }
+	void SumaNum(int N) { numero += N; }
+	
 
 	int getX() {return x;}
 	int getY() { return y; }
+	int getNum() { return numero; }
 
 	Rectangle getRect() {
 		return Rectangle(x, y, size, size);
