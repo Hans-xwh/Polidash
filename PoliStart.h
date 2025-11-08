@@ -101,25 +101,25 @@ namespace Polidash {
 			// 
 			this->label1->AutoSize = true;
 			this->label1->Cursor = System::Windows::Forms::Cursors::Cross;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Broadway", 48, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->label1->Font = (gcnew System::Drawing::Font(L"Broadway", 58.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label1->ForeColor = System::Drawing::Color::Yellow;
-			this->label1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"label1.Image")));
 			this->label1->ImageAlign = System::Drawing::ContentAlignment::BottomRight;
-			this->label1->Location = System::Drawing::Point(535, 91);
+			this->label1->Location = System::Drawing::Point(516, 51);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(505, 91);
+			this->label1->Size = System::Drawing::Size(612, 110);
 			this->label1->TabIndex = 2;
 			this->label1->Text = L"/PoliDash\\";
 			this->label1->Click += gcnew System::EventHandler(this, &PoliStart::label1_Click);
 			// 
 			// pictureBox1
 			// 
+			this->pictureBox1->BackColor = System::Drawing::Color::Yellow;
 			this->pictureBox1->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.BackgroundImage")));
 			this->pictureBox1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->pictureBox1->Location = System::Drawing::Point(322, 60);
+			this->pictureBox1->Location = System::Drawing::Point(337, 51);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(195, 135);
+			this->pictureBox1->Size = System::Drawing::Size(195, 155);
 			this->pictureBox1->TabIndex = 3;
 			this->pictureBox1->TabStop = false;
 			// 
@@ -130,7 +130,7 @@ namespace Polidash {
 			this->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->ClientSize = System::Drawing::Size(1421, 766);
+			this->ClientSize = System::Drawing::Size(1421, 606);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->btn_auto);
