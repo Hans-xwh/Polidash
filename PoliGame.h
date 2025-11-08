@@ -25,7 +25,7 @@ namespace Polidash {
 			//TODO: Add the constructor code here
 			//
 
-			testFig = new Figura(10, 10, 200, Shapes::HEXAGONO);
+			testFig = new Figura(10, 10, 100, Shapes::HEXAGONO);
 			pruebita = new FiguritasNPC(10, 10, 100, true, 1);
 		}
 

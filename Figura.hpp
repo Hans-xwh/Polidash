@@ -8,6 +8,7 @@ enum Dir {
 	ABAJO,
 	IZQUIERDA,
 	DERECHA,
+	NADA
 };
 
 //Tipos de figura
