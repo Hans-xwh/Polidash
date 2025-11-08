@@ -141,11 +141,17 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Derrota.resx">
+      <DependentUpon>Derrota.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PoliGame.resx">
       <DependentUpon>PoliGame.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PoliStart.resx">
       <DependentUpon>PoliStart.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Victoria.resx">
+      <DependentUpon>Victoria.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

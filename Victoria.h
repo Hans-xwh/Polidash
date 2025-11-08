@@ -34,6 +34,8 @@ namespace Polidash {
 				delete components;
 			}
 		}
+	private: System::Windows::Forms::Button^ button1;
+	protected:
 
 	private:
 		/// <summary>
@@ -48,11 +50,39 @@ namespace Polidash {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->components = gcnew System::ComponentModel::Container();
-			this->Size = System::Drawing::Size(300,300);
-			this->Text = L"Victoria";
-			this->Padding = System::Windows::Forms::Padding(0);
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Victoria::typeid));
+			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->SuspendLayout();
+			// 
+			// button1
+			// 
+			this->button1->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
+			this->button1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
+			this->button1->Font = (gcnew System::Drawing::Font(L"Cooper Black", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button1->ForeColor = System::Drawing::SystemColors::ControlLightLight;
+			this->button1->ImageAlign = System::Drawing::ContentAlignment::TopRight;
+			this->button1->Location = System::Drawing::Point(755, 496);
+			this->button1->Name = L"button1";
+			this->button1->RightToLeft = System::Windows::Forms::RightToLeft::No;
+			this->button1->Size = System::Drawing::Size(229, 120);
+			this->button1->TabIndex = 1;
+			this->button1->Text = L"VOLVER AL MENÚ";
+			this->button1->UseVisualStyleBackColor = false;
+			// 
+			// Victoria
+			// 
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
+			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->ClientSize = System::Drawing::Size(996, 628);
+			this->Controls->Add(this->button1);
+			this->ForeColor = System::Drawing::SystemColors::ControlLight;
+			this->Name = L"Victoria";
+			this->Text = L"Victoria";
+			this->ResumeLayout(false);
+
 		}
 #pragma endregion
 	};

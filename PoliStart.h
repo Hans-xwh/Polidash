@@ -1,6 +1,8 @@
 #pragma once
 
 #include "PoliGame.h"
+#include "Victoria.h"
+#include "Derrota.h"
 
 namespace Polidash {
 
@@ -40,6 +42,8 @@ namespace Polidash {
 	private: System::Windows::Forms::Button^ btn_auto;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
+	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::Button^ button2;
 
 
 
@@ -67,6 +71,8 @@ namespace Polidash {
 			this->btn_auto = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -123,6 +129,30 @@ namespace Polidash {
 			this->pictureBox1->TabIndex = 3;
 			this->pictureBox1->TabStop = false;
 			// 
+			// button1
+			// 
+			this->button1->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
+			this->button1->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->button1->Location = System::Drawing::Point(67, 221);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(235, 122);
+			this->button1->TabIndex = 4;
+			this->button1->Text = L"PRUEBAS PANTALLA L";
+			this->button1->UseVisualStyleBackColor = false;
+			this->button1->Click += gcnew System::EventHandler(this, &PoliStart::button1_Click);
+			// 
+			// button2
+			// 
+			this->button2->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
+			this->button2->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->button2->Location = System::Drawing::Point(67, 377);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(235, 122);
+			this->button2->TabIndex = 5;
+			this->button2->Text = L"PRUEBAS PANTALLA W";
+			this->button2->UseVisualStyleBackColor = false;
+			this->button2->Click += gcnew System::EventHandler(this, &PoliStart::button2_Click);
+			// 
 			// PoliStart
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -131,6 +161,8 @@ namespace Polidash {
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(1421, 606);
+			this->Controls->Add(this->button2);
+			this->Controls->Add(this->button1);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->btn_auto);
@@ -153,5 +185,17 @@ namespace Polidash {
 	}
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Hide();
+	Derrota^ game = gcnew Derrota();
+	game->ShowDialog();
+	this->Close();
+}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Hide();
+	Victoria^ game = gcnew Victoria();
+	game->ShowDialog();
+	this->Close();
+}
 };
 }
