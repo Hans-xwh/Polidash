@@ -106,6 +106,7 @@ namespace Polidash {
 		//Operaciones de dibujado aqui
 		bCanvas->Graphics->Clear(Color::White);	//Despues cambiar el fondo?
 
+		juego->Update(bCanvas->Graphics);
 		juego->DrawAll(bCanvas->Graphics);
 
 		//mover y dibujar
@@ -129,22 +130,24 @@ namespace Polidash {
 	}
 	private: System::Void PoliGame_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
-    private: System::Void PoliGame_KeyDown(System::Object^ sender, KeyEventArgs^ e) {
+	private: System::Void PoliGame_KeyDown(System::Object^ sender, KeyEventArgs^ e) {
 		teclapulsada = Dir::NADA;
-	
-		/*	Todo esto hay que rehacerlo usando la controladora
+
 		if (e->KeyCode == Keys::Up)		teclapulsada = Dir::ARRIBA;
 		if (e->KeyCode == Keys::Down)	teclapulsada = Dir::ABAJO;
 		if (e->KeyCode == Keys::Right)	teclapulsada = Dir::DERECHA;
 		if (e->KeyCode == Keys::Left)	teclapulsada = Dir::IZQUIERDA;
 
-		jugador->mover(teclapulsada);*/
-    }
-
-    private: System::Void PoliGame_KeyUp(System::Object^ sender, KeyEventArgs^ e) {
-	    /*if (e->KeyCode == Keys::Up || e->KeyCode == Keys::Down || e->KeyCode == Keys::Left || e->KeyCode == Keys::Right) {
-	    jugador->mover(NADA);
-		}*/
+		juego->KeyDown(teclapulsada);
 	}
-	};
+
+	private: System::Void PoliGame_KeyUp(System::Object^ sender, KeyEventArgs^ e) {
+		if (e->KeyCode == Keys::Up || e->KeyCode == Keys::Down || e->KeyCode == Keys::Left || e->KeyCode == Keys::Right||
+			e->KeyCode == Keys::W || e->KeyCode == Keys::S || e->KeyCode == Keys::A || e->KeyCode == Keys::D){
+			juego->keyUp(NADA);
+		}
+	}
+};
 }
+
+

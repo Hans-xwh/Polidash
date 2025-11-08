@@ -14,9 +14,9 @@ private:
 	int playerColor;
 
 public:
-	Juego(){
+	Juego() {
 		Random^ r = gcnew Random();
-		jugador = new Jugador(10, 10, r->Next(0,3));
+		jugador = new Jugador(10, 10, r->Next(0, 3));
 		playerColor = 1;
 
 		for (int i = 0; i < 3; i++) {
@@ -48,6 +48,17 @@ public:
 			figura->draw(g);
 		}
 		jugador->draw(g);
+	}
+
+	void Update(Graphics^ g) {
+
+	}
+
+	void KeyDown(Dir d) {
+
+	}
+
+	void keyUp(Dir d) {
 
 	}
 };
