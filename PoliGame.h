@@ -2,6 +2,7 @@
 
 #include "Figura.hpp"
 #include "figuritasnpc.hpp"
+#include "FiguraJugador.hpp"
 
 namespace Polidash {
 
@@ -24,8 +25,8 @@ namespace Polidash {
 			//
 			//TODO: Add the constructor code here
 			//
-
-			testFig = new Figura(10, 10, 100, Shapes::HEXAGONO);
+			jugador = new Jugador(100, 100, t1);
+			testFig = new Figura(10, 10, 200, Shapes::HEXAGONO);
 			pruebita = new FiguritasNPC(10, 10, 100, true, 1);
 		}
 
@@ -50,6 +51,8 @@ namespace Polidash {
 		/// </summary>
 		Figura* testFig;
 		FiguritasNPC* pruebita;
+		Jugador* jugador;
+		Dir teclapulsada;
 
 
 #pragma region Windows Form Designer generated code
@@ -80,7 +83,9 @@ namespace Polidash {
 			this->Text = L"PoliDash: Game";
 			this->Load += gcnew System::EventHandler(this, &PoliGame::PoliGame_Load);
 			this->ResumeLayout(false);
-
+			this->KeyPreview = true;
+			this->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &PoliGame::PoliGame_KeyDown);
+			this->KeyUp += gcnew System::Windows::Forms::KeyEventHandler(this, &PoliGame::PoliGame_KeyUp);
 		}
 #pragma endregion
 	private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
@@ -100,6 +105,10 @@ namespace Polidash {
 		pruebita->autoMove();
 		pruebita->draw(bCanvas->Graphics);
 
+		//jugador
+		jugador->autoMove();
+		jugador->draw(bCanvas->Graphics);
+
 		testFig->draw(bCanvas->Graphics);
 
 		//Render
@@ -110,6 +119,22 @@ namespace Polidash {
 		delete g;
 	}
 	private: System::Void PoliGame_Load(System::Object^ sender, System::EventArgs^ e) {
+	}
+    private: System::Void PoliGame_KeyDown(System::Object^ sender, KeyEventArgs^ e) {
+		teclapulsada = Dir::NADA;
+	
+		if (e->KeyCode == Keys::Up)		teclapulsada = Dir::ARRIBA;
+		if (e->KeyCode == Keys::Down)	teclapulsada = Dir::ABAJO;
+		if (e->KeyCode == Keys::Right)	teclapulsada = Dir::DERECHA;
+		if (e->KeyCode == Keys::Left)	teclapulsada = Dir::IZQUIERDA;
+
+		jugador->mover(teclapulsada);
+    }
+
+    private: System::Void PoliGame_KeyUp(System::Object^ sender, KeyEventArgs^ e) {
+	    if (e->KeyCode == Keys::Up || e->KeyCode == Keys::Down || e->KeyCode == Keys::Left || e->KeyCode == Keys::Right) {
+	    jugador->mover(NADA);
+		}
 	}
 	};
 }
