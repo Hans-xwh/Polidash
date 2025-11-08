@@ -126,6 +126,7 @@
     <ClCompile Include="Victoria.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Controladora.hpp" />
     <ClInclude Include="Derrota.h">
       <FileType>CppForm</FileType>
     </ClInclude>
