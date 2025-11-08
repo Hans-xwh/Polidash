@@ -36,12 +36,12 @@ public:
 		this->x = X;
 		this->y = Y;
 		speed = 5;
-		size = 75;
+		size = 200;
 		shape = S;
 	}
 
 	array<Point>^ damePuntos() {	//basado en la figura actual retorna los puntos convertidos a coordenadas globales
-		if (shape < 3) {
+		if (shape < 3 || shape>10) {
 			shape = TRIANGULO;	//evita dibujar poligonos invalidos
 		}
 
@@ -131,15 +131,17 @@ public:
 				Point(x, y + size -(size/2.75)),
 				Point(x + (size/5), y+size-(size/8)),
 				Point(x+ (size/2), y+size),
-				Point()
-
+				Point(x+ size-(size/5), size-(size/8)),
+				Point(x + size, y + size - (size / 2.75)),
+				Point(x + size, y + (size / 2.75)),
+				Point(x + size - (size / 5), y + (size / 8)),
 			};
 			return p;
 		}
 	}
 
 	void draw(Graphics^ g) {
-		shape = Shapes(9);		//Esta linea solo para pruebas, la forma no se debe fijar aqui
+		shape = Shapes(10);		//Esta linea solo para pruebas, la forma no se debe fijar aqui
 
 		array<Point>^ puntos = damePuntos();
 		g->FillPolygon(Brushes::Aqua, puntos);

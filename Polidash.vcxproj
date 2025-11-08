@@ -120,15 +120,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Derrota.cpp" />
     <ClCompile Include="PoliGame.cpp" />
     <ClCompile Include="PoliStart.cpp" />
+    <ClCompile Include="Victoria.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Derrota.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Figura.hpp" />
     <ClInclude Include="PoliGame.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="PoliStart.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Victoria.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>

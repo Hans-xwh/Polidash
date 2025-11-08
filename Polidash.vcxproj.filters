@@ -21,6 +21,12 @@
     <ClCompile Include="PoliGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Victoria.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Derrota.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PoliStart.h">
@@ -30,6 +36,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Figura.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Victoria.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Derrota.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
