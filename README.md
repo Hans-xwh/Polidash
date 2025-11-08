@@ -1,1 +1,1 @@
-# Polidash
+# Polidash: Road to Decagon
