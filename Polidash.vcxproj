@@ -120,14 +120,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="PoliGame.cpp" />
     <ClCompile Include="PoliStart.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Figura.hpp" />
+    <ClInclude Include="PoliGame.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="PoliStart.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="PoliGame.resx">
+      <DependentUpon>PoliGame.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PoliStart.resx">
       <DependentUpon>PoliStart.h</DependentUpon>
     </EmbeddedResource>

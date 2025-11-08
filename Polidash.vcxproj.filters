@@ -18,9 +18,18 @@
     <ClCompile Include="PoliStart.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PoliGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PoliStart.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PoliGame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Figura.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

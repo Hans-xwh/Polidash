@@ -1,5 +1,7 @@
 #pragma once
 
+#include "PoliGame.h"
+
 namespace Polidash {
 
 	using namespace System;
@@ -34,7 +36,11 @@ namespace Polidash {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::Button^ btn_player;
+	private: System::Windows::Forms::Button^ btn_auto;
+	protected:
+
+
 	protected:
 
 	private:
@@ -51,24 +57,36 @@ namespace Polidash {
 		void InitializeComponent(void)
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(PoliStart::typeid));
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->btn_player = (gcnew System::Windows::Forms::Button());
+			this->btn_auto = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
-			// button1
+			// btn_player
 			// 
-			this->button1->Location = System::Drawing::Point(509, 212);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(75, 23);
-			this->button1->TabIndex = 0;
-			this->button1->Text = L"button1";
-			this->button1->UseVisualStyleBackColor = true;
+			this->btn_player->Location = System::Drawing::Point(454, 241);
+			this->btn_player->Name = L"btn_player";
+			this->btn_player->Size = System::Drawing::Size(240, 88);
+			this->btn_player->TabIndex = 0;
+			this->btn_player->Text = L"JUGADOR";
+			this->btn_player->UseVisualStyleBackColor = true;
+			this->btn_player->Click += gcnew System::EventHandler(this, &PoliStart::btn_player_Click);
+			// 
+			// btn_auto
+			// 
+			this->btn_auto->Location = System::Drawing::Point(113, 241);
+			this->btn_auto->Name = L"btn_auto";
+			this->btn_auto->Size = System::Drawing::Size(240, 88);
+			this->btn_auto->TabIndex = 1;
+			this->btn_auto->Text = L"AUTOMATICO";
+			this->btn_auto->UseVisualStyleBackColor = true;
 			// 
 			// PoliStart
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(807, 438);
-			this->Controls->Add(this->button1);
+			this->Controls->Add(this->btn_auto);
+			this->Controls->Add(this->btn_player);
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"PoliStart";
 			this->Text = L"Polidash";
@@ -76,5 +94,11 @@ namespace Polidash {
 
 		}
 #pragma endregion
+	private: System::Void btn_player_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Hide();
+		PoliGame^ game = gcnew PoliGame();
+		game->ShowDialog();
+		this->Close();
+	}
 	};
 }
