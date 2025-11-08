@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Figura.hpp"
+#include "figuritasnpc.hpp"
 
 namespace Polidash {
 
@@ -25,6 +26,7 @@ namespace Polidash {
 			//
 
 			testFig = new Figura(10, 10);
+			pruebita = new FiguritasNPC(10, 10, Color::Red, true, 1);
 		}
 
 	protected:
@@ -47,6 +49,7 @@ namespace Polidash {
 		/// Required designer variable.
 		/// </summary>
 		Figura* testFig;
+		FiguritasNPC* pruebita;
 
 
 #pragma region Windows Form Designer generated code
@@ -68,11 +71,11 @@ namespace Polidash {
 			// 
 			// PoliGame
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(801, 453);
+			this->ClientSize = System::Drawing::Size(1068, 558);
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
-			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"PoliGame";
 			this->Text = L"PoliDash: Game";
 			this->ResumeLayout(false);
@@ -91,6 +94,10 @@ namespace Polidash {
 
 		//Operaciones de dibujado aqui
 		bCanvas->Graphics->Clear(Color::White);	//Despues cambiar el fondo?
+
+		//mover y dibujar
+		pruebita->autoMove();
+		pruebita->draw(bCanvas->Graphics);
 
 		testFig->draw(bCanvas->Graphics);
 

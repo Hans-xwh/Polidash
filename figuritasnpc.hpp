@@ -21,6 +21,7 @@ public:
 	value = rand() % 5 + 1;
 	shape = Shapes(rand() % 8 + 3);
 	dx = dy = 0;
+    colornpc = c;
 
 	}
 
