@@ -2,6 +2,14 @@
 
 using namespace System::Drawing;
 
+//Direcciones
+enum Dir {
+	ARRIBA,
+	ABAJO,
+	IZQUIERDA,
+	DERECHA,
+};
+
 //Tipos de figura
 enum Shapes {			//se puede llamar como Shapes(x), x siendo el numero de lados. las posiciones 0-2 quedan vacias.
 	TRIANGULO	= 3,	
@@ -18,7 +26,8 @@ enum Shapes {			//se puede llamar como Shapes(x), x siendo el numero de lados. l
 class Figura {
 protected:
 	int x, y;
-	int speed;
+	int dx, dy;
+	int speed;	//Quiza no se usa
 	int size;		//todas las figuras son "cuadradas"
 	Shapes shape;
 
@@ -97,6 +106,32 @@ public:
 				Point(x+size, y+(2 * size/3)),
 				Point(x+size, y+(size/3)),
 				Point(x+(2*size/3),y)
+			};
+			return p;
+		}
+		else if (shape == NONAGONO) {
+			array<Point>^ p = {
+				Point(x + (size / 2),y),
+				Point(x + (size / 5), y + (size / 6)),
+				Point(x, y + (size / 2)),
+				Point(x + (size / 8), y + (size / 1.25)),
+				Point(x + (size / 3), y + size),
+				Point(x + size - (size / 3), y + size),
+				Point(x + size - (size / 8), y + ( size / 1.25)),
+				Point(x + size, y + (size / 2)),
+				Point(x + size - (size / 5), y + (size / 6))
+			};
+			return p;
+		}
+		else if (shape == DECAGONO){
+			array<Point>^ p = {
+				Point(x+(size/2), y),
+				Point(x+(size/5),y+(size/8)),
+				Point(x, y+(size/2.75)),
+				Point(x, y + size -(size/2.75)),
+				Point(x + (size/5), y+size-(size/8)),
+				Point(x+ (size/2), y+size),
+				Point()
 
 			};
 			return p;
@@ -104,11 +139,26 @@ public:
 	}
 
 	void draw(Graphics^ g) {
-		shape = Shapes(8);		//Esta linea solo para pruebas, la forma no se debe fijar aqui
+		shape = Shapes(9);		//Esta linea solo para pruebas, la forma no se debe fijar aqui
 
 		array<Point>^ puntos = damePuntos();
 		g->FillPolygon(Brushes::Aqua, puntos);
 		g->DrawPolygon(Pens::Red, puntos);
 	}
-	
+
+	void autoMove() {
+		//codigo de movimiento automatico ahora,
+	}
+
+	void setSpeed(int s) { speed = s; }
+	void setDx(int DX) { dx = DX; }
+	void setDy(int DY) { dy = DY; }
+	void setSize(int S) { size = S; }
+
+	int getX() {return x;}
+	int getY() { return y; }
+
+	Rectangle getRect() {
+		return Rectangle(x, y, size, size);}
+
 };
