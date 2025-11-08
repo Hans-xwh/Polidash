@@ -29,6 +29,7 @@ protected:
 	int dx, dy;
 	int speed;	//Quiza no se usa
 	int size;		//todas las figuras son "cuadradas"
+	int numero;
 	Shapes shape;
 
 public:
@@ -146,6 +147,9 @@ public:
 		array<Point>^ puntos = damePuntos();
 		g->FillPolygon(Brushes::Aqua, puntos);
 		g->DrawPolygon(Pens::Red, puntos);
+
+		//Numero interior
+		//>DrawString(System::String)
 	}
 
 	virtual void autoMove() {
