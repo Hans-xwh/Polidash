@@ -131,7 +131,7 @@ public:
 				Point(x, y + size -(size/2.75)),
 				Point(x + (size/5), y+size-(size/8)),
 				Point(x+ (size/2), y+size),
-				Point(x+ size-(size/5), size-(size/8)),
+				Point(x+ size-(size/5), y + size-(size/8)),
 				Point(x + size, y + size - (size / 2.75)),
 				Point(x + size, y + (size / 2.75)),
 				Point(x + size - (size / 5), y + (size / 8)),
@@ -161,6 +161,7 @@ public:
 	int getY() { return y; }
 
 	Rectangle getRect() {
-		return Rectangle(x, y, size, size);}
+		return Rectangle(x, y, size, size);
+	}
 
 };
