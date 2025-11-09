@@ -47,7 +47,7 @@ namespace Polidash {
 	private: System::Windows::Forms::Button^ btn_auto;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
-	private: System::Windows::Forms::Button^ button1;
+
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Button^ button3;
@@ -80,7 +80,6 @@ namespace Polidash {
 			this->btn_auto = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
-			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->button3 = (gcnew System::Windows::Forms::Button());
@@ -145,29 +144,17 @@ namespace Polidash {
 			this->pictureBox1->TabIndex = 3;
 			this->pictureBox1->TabStop = false;
 			// 
-			// button1
-			// 
-			this->button1->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->button1->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->button1->Location = System::Drawing::Point(67, 222);
-			this->button1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(235, 122);
-			this->button1->TabIndex = 4;
-			this->button1->Text = L"PRUEBAS PANTALLA L";
-			this->button1->UseVisualStyleBackColor = false;
-			this->button1->Click += gcnew System::EventHandler(this, &PoliStart::button1_Click);
-			// 
 			// button2
 			// 
 			this->button2->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
+			this->button2->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button2.BackgroundImage")));
+			this->button2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->button2->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->button2->Location = System::Drawing::Point(67, 377);
+			this->button2->Location = System::Drawing::Point(46, 361);
 			this->button2->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(235, 122);
+			this->button2->Size = System::Drawing::Size(287, 154);
 			this->button2->TabIndex = 5;
-			this->button2->Text = L"PRUEBAS PANTALLA W";
 			this->button2->UseVisualStyleBackColor = false;
 			this->button2->Click += gcnew System::EventHandler(this, &PoliStart::button2_Click);
 			// 
@@ -204,9 +191,9 @@ namespace Polidash {
 			// 
 			this->button4->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->button4->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->button4->Location = System::Drawing::Point(22, 568);
+			this->button4->Location = System::Drawing::Point(24, 535);
 			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(120, 26);
+			this->button4->Size = System::Drawing::Size(141, 40);
 			this->button4->TabIndex = 8;
 			this->button4->Text = L"Play Music";
 			this->button4->UseVisualStyleBackColor = false;
@@ -216,9 +203,9 @@ namespace Polidash {
 			// 
 			this->button5->BackColor = System::Drawing::SystemColors::ControlText;
 			this->button5->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->button5->Location = System::Drawing::Point(182, 568);
+			this->button5->Location = System::Drawing::Point(204, 534);
 			this->button5->Name = L"button5";
-			this->button5->Size = System::Drawing::Size(120, 26);
+			this->button5->Size = System::Drawing::Size(145, 41);
 			this->button5->TabIndex = 9;
 			this->button5->Text = L"Stop Music";
 			this->button5->UseVisualStyleBackColor = false;
@@ -237,7 +224,6 @@ namespace Polidash {
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->button2);
-			this->Controls->Add(this->button1);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->btn_auto);
