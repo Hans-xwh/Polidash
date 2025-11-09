@@ -66,11 +66,11 @@ namespace Polidash {
 				static_cast<System::Byte>(0)));
 			this->button1->ForeColor = System::Drawing::SystemColors::ControlLightLight;
 			this->button1->ImageAlign = System::Drawing::ContentAlignment::TopRight;
-			this->button1->Location = System::Drawing::Point(652, 465);
-			this->button1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->button1->Location = System::Drawing::Point(869, 572);
+			this->button1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->button1->Name = L"button1";
 			this->button1->RightToLeft = System::Windows::Forms::RightToLeft::No;
-			this->button1->Size = System::Drawing::Size(166, 46);
+			this->button1->Size = System::Drawing::Size(221, 57);
 			this->button1->TabIndex = 2;
 			this->button1->Text = L"VOLVER AL MENÚ";
 			this->button1->UseVisualStyleBackColor = false;
@@ -78,16 +78,17 @@ namespace Polidash {
 			// 
 			// Instrucciones
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->ClientSize = System::Drawing::Size(816, 519);
+			this->ClientSize = System::Drawing::Size(1088, 639);
 			this->Controls->Add(this->button1);
 			this->DoubleBuffered = true;
 			this->ForeColor = System::Drawing::Color::CornflowerBlue;
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedDialog;
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
+			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->MaximizeBox = false;
 			this->Name = L"Instrucciones";
 			this->Text = L"PoliDash: Instrucciones";
