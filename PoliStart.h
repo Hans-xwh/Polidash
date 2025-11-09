@@ -13,6 +13,7 @@ namespace Polidash {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Media;
 
 	/// <summary>
 	/// Summary for PoliStart
@@ -20,6 +21,9 @@ namespace Polidash {
 	public ref class PoliStart : public System::Windows::Forms::Form
 	{
 	public:
+
+		SoundPlayer^ sonidito = gcnew SoundPlayer("Audio/TimeMachine.wav");
+
 		PoliStart(void)
 		{
 			InitializeComponent();
@@ -47,6 +51,8 @@ namespace Polidash {
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Button^ button3;
+	private: System::Windows::Forms::Button^ button4;
+	private: System::Windows::Forms::Button^ button5;
 
 
 
@@ -78,6 +84,8 @@ namespace Polidash {
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->button4 = (gcnew System::Windows::Forms::Button());
+			this->button5 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -192,6 +200,26 @@ namespace Polidash {
 			this->button3->UseVisualStyleBackColor = true;
 			this->button3->Click += gcnew System::EventHandler(this, &PoliStart::button3_Click);
 			// 
+			// button4
+			// 
+			this->button4->Location = System::Drawing::Point(22, 568);
+			this->button4->Name = L"button4";
+			this->button4->Size = System::Drawing::Size(120, 26);
+			this->button4->TabIndex = 8;
+			this->button4->Text = L"Play Music";
+			this->button4->UseVisualStyleBackColor = true;
+			this->button4->Click += gcnew System::EventHandler(this, &PoliStart::button4_Click);
+			// 
+			// button5
+			// 
+			this->button5->Location = System::Drawing::Point(182, 568);
+			this->button5->Name = L"button5";
+			this->button5->Size = System::Drawing::Size(120, 26);
+			this->button5->TabIndex = 9;
+			this->button5->Text = L"Stop Music";
+			this->button5->UseVisualStyleBackColor = true;
+			this->button5->Click += gcnew System::EventHandler(this, &PoliStart::button5_Click);
+			// 
 			// PoliStart
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -200,6 +228,8 @@ namespace Polidash {
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(1421, 606);
+			this->Controls->Add(this->button5);
+			this->Controls->Add(this->button4);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->button2);
@@ -245,6 +275,13 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 	Instrucciones^ game = gcnew Instrucciones();
 	game->ShowDialog();
 	this->Close();
+}
+
+private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+	sonidito->PlayLooping();
+}
+private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
+	sonidito->Stop();
 }
 };
 }

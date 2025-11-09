@@ -22,8 +22,6 @@ namespace Polidash {
 	{
 	public:
 
-		SoundPlayer^ sonidito = gcnew SoundPlayer("SonidosGame.wav");
-
 		PoliGame(void)
 		{
 			InitializeComponent();
