@@ -21,6 +21,7 @@ namespace Polidash {
 	public ref class PoliGame : public System::Windows::Forms::Form
 	{
 	public:
+		SoundPlayer^ soniditoTime = gcnew SoundPlayer("Audio/TimeMachine.wav");
 
 		PoliGame(void)
 		{
@@ -58,6 +59,8 @@ namespace Polidash {
 		//Jugador* jugador;
 		Juego* juego;
 	private: System::Windows::Forms::ProgressBar^ progressBar1;
+	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::Button^ button2;
 
 
 
@@ -81,6 +84,8 @@ namespace Polidash {
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(PoliGame::typeid));
 			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->progressBar1 = (gcnew System::Windows::Forms::ProgressBar());
+			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// timer1
@@ -91,21 +96,44 @@ namespace Polidash {
 			// 
 			// progressBar1
 			// 
-			this->progressBar1->Location = System::Drawing::Point(989, 558);
+			this->progressBar1->Location = System::Drawing::Point(1319, 687);
+			this->progressBar1->Margin = System::Windows::Forms::Padding(4);
 			this->progressBar1->Name = L"progressBar1";
-			this->progressBar1->Size = System::Drawing::Size(266, 23);
+			this->progressBar1->Size = System::Drawing::Size(355, 28);
 			this->progressBar1->TabIndex = 0;
 			this->progressBar1->Click += gcnew System::EventHandler(this, &PoliGame::progressBar1_Click);
 			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(22, 692);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(112, 23);
+			this->button1->TabIndex = 1;
+			this->button1->Text = L"Play Music";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &PoliGame::button1_Click);
+			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(160, 692);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(112, 23);
+			this->button2->TabIndex = 2;
+			this->button2->Text = L"Stop Music";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &PoliGame::button2_Click);
+			// 
 			// PoliGame
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1277, 593);
+			this->ClientSize = System::Drawing::Size(1703, 730);
+			this->Controls->Add(this->button2);
+			this->Controls->Add(this->button1);
 			this->Controls->Add(this->progressBar1);
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->KeyPreview = true;
-			this->Margin = System::Windows::Forms::Padding(2);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->MaximizeBox = false;
 			this->Name = L"PoliGame";
 			this->Text = L"PoliDash: Game";
@@ -171,6 +199,12 @@ namespace Polidash {
 		}
 	}
 private: System::Void progressBar1_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	soniditoTime->PlayLooping();
+}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	soniditoTime->Stop();
 }
 };
 }

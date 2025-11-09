@@ -22,7 +22,7 @@ namespace Polidash {
 	{
 	public:
 
-		SoundPlayer^ sonidito = gcnew SoundPlayer("Audio/TimeMachine.wav");
+		SoundPlayer^ sonidito = gcnew SoundPlayer("Audio/menuLoop.wav");
 
 		PoliStart(void)
 		{
@@ -202,22 +202,26 @@ namespace Polidash {
 			// 
 			// button4
 			// 
+			this->button4->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
+			this->button4->ForeColor = System::Drawing::SystemColors::ButtonFace;
 			this->button4->Location = System::Drawing::Point(22, 568);
 			this->button4->Name = L"button4";
 			this->button4->Size = System::Drawing::Size(120, 26);
 			this->button4->TabIndex = 8;
 			this->button4->Text = L"Play Music";
-			this->button4->UseVisualStyleBackColor = true;
+			this->button4->UseVisualStyleBackColor = false;
 			this->button4->Click += gcnew System::EventHandler(this, &PoliStart::button4_Click);
 			// 
 			// button5
 			// 
+			this->button5->BackColor = System::Drawing::SystemColors::ControlText;
+			this->button5->ForeColor = System::Drawing::SystemColors::ButtonFace;
 			this->button5->Location = System::Drawing::Point(182, 568);
 			this->button5->Name = L"button5";
 			this->button5->Size = System::Drawing::Size(120, 26);
 			this->button5->TabIndex = 9;
 			this->button5->Text = L"Stop Music";
-			this->button5->UseVisualStyleBackColor = true;
+			this->button5->UseVisualStyleBackColor = false;
 			this->button5->Click += gcnew System::EventHandler(this, &PoliStart::button5_Click);
 			// 
 			// PoliStart
