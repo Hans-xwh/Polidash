@@ -176,6 +176,8 @@ public:
 		//codigo de movimiento automatico ahora,
 	}
 
+	void setX(int X) { x = X; }
+	void setY(int Y) { y = Y; }
 	void setSpeed(int s) { speed = s; }
 	void setDx(int DX) { dx = DX; }
 	void setDy(int DY) { dy = DY; }

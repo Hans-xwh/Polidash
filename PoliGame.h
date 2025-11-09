@@ -59,7 +59,17 @@ namespace Polidash {
 		//FiguritasNPC* pruebita;
 		//Jugador* jugador;
 		Juego* juego;
-		Dir teclapulsada;
+	private: System::Windows::Forms::ProgressBar^ progressBar1;
+
+
+
+
+
+
+
+
+
+		   Dir teclapulsada;
 
 
 #pragma region Windows Form Designer generated code
@@ -72,6 +82,7 @@ namespace Polidash {
 			this->components = (gcnew System::ComponentModel::Container());
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(PoliGame::typeid));
 			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
+			this->progressBar1 = (gcnew System::Windows::Forms::ProgressBar());
 			this->SuspendLayout();
 			// 
 			// timer1
@@ -80,11 +91,20 @@ namespace Polidash {
 			this->timer1->Interval = 33;
 			this->timer1->Tick += gcnew System::EventHandler(this, &PoliGame::timer1_Tick);
 			// 
+			// progressBar1
+			// 
+			this->progressBar1->Location = System::Drawing::Point(989, 558);
+			this->progressBar1->Name = L"progressBar1";
+			this->progressBar1->Size = System::Drawing::Size(266, 23);
+			this->progressBar1->TabIndex = 0;
+			this->progressBar1->Click += gcnew System::EventHandler(this, &PoliGame::progressBar1_Click);
+			// 
 			// PoliGame
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(801, 453);
+			this->ClientSize = System::Drawing::Size(1277, 593);
+			this->Controls->Add(this->progressBar1);
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->KeyPreview = true;
 			this->Margin = System::Windows::Forms::Padding(2);
@@ -109,9 +129,9 @@ namespace Polidash {
 		BufferedGraphics^ bCanvas = myBuffer->Allocate(g, this->ClientRectangle);	//bCanvas = Buffered Canvas
 
 		//Operaciones de dibujado aqui
-		bCanvas->Graphics->Clear(Color::White);	//Despues cambiar el fondo?
+		//bCanvas->Graphics->Clear(Color::White);	//El fondo se dibuja en DrawAll()
 
-		juego->Update(bCanvas->Graphics);
+		this->progressBar1->Value = juego->Update(bCanvas->Graphics);
 		juego->DrawAll(bCanvas->Graphics);
 
 		//mover y dibujar
@@ -152,6 +172,8 @@ namespace Polidash {
 			juego->keyUp(NADA);
 		}
 	}
+private: System::Void progressBar1_Click(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }
 
