@@ -33,6 +33,7 @@ namespace Polidash {
 			//testFig = new Figura(10, 10, 200, Shapes::HEXAGONO);
 			//pruebita = new FiguritasNPC(10, 10, 100, true, 1);
 			juego = new Juego();
+			isMusicActiva = false;
 		}
 
 	protected:
@@ -73,6 +74,18 @@ namespace Polidash {
 
 
 		   Dir teclapulsada;
+	private: System::Windows::Forms::Label^ label3;
+	private: System::Windows::Forms::Label^ label4;
+	private: System::Windows::Forms::Label^ label5;
+	private: System::Windows::Forms::Label^ lbl_lado;
+
+	private: System::Windows::Forms::Label^ lbl_num;
+
+	private: System::Windows::Forms::Label^ lbl_angulo;
+
+	private: System::Windows::Forms::Label^ lbl_velocidad;
+
+		   static bool isMusicActiva;
 
 
 #pragma region Windows Form Designer generated code
@@ -88,6 +101,13 @@ namespace Polidash {
 			this->progressBar1 = (gcnew System::Windows::Forms::ProgressBar());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->lbl_lado = (gcnew System::Windows::Forms::Label());
+			this->lbl_num = (gcnew System::Windows::Forms::Label());
+			this->lbl_angulo = (gcnew System::Windows::Forms::Label());
+			this->lbl_velocidad = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// timer1
@@ -118,26 +138,104 @@ namespace Polidash {
 			// 
 			this->label2->AutoSize = true;
 			this->label2->BackColor = System::Drawing::SystemColors::Window;
-			this->label2->Location = System::Drawing::Point(1010, 398);
+			this->label2->Location = System::Drawing::Point(1005, 347);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(40, 13);
+			this->label2->Size = System::Drawing::Size(60, 13);
 			this->label2->TabIndex = 2;
-			this->label2->Text = L"Texto: ";
+			this->label2->Text = L"Velocidad: ";
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->BackColor = System::Drawing::SystemColors::Window;
+			this->label3->Location = System::Drawing::Point(1005, 194);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(39, 13);
+			this->label3->TabIndex = 3;
+			this->label3->Text = L"Lados:";
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->BackColor = System::Drawing::SystemColors::Window;
+			this->label4->Location = System::Drawing::Point(1005, 241);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(47, 13);
+			this->label4->TabIndex = 4;
+			this->label4->Text = L"Numero:";
+			// 
+			// label5
+			// 
+			this->label5->AutoSize = true;
+			this->label5->BackColor = System::Drawing::SystemColors::Window;
+			this->label5->Location = System::Drawing::Point(1005, 289);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(75, 13);
+			this->label5->TabIndex = 5;
+			this->label5->Text = L"Sum. Angulos:";
+			// 
+			// lbl_lado
+			// 
+			this->lbl_lado->AutoSize = true;
+			this->lbl_lado->BackColor = System::Drawing::SystemColors::Window;
+			this->lbl_lado->Location = System::Drawing::Point(1112, 194);
+			this->lbl_lado->Name = L"lbl_lado";
+			this->lbl_lado->Size = System::Drawing::Size(21, 13);
+			this->lbl_lado->TabIndex = 6;
+			this->lbl_lado->Text = L"XX";
+			// 
+			// lbl_num
+			// 
+			this->lbl_num->AutoSize = true;
+			this->lbl_num->BackColor = System::Drawing::SystemColors::Window;
+			this->lbl_num->Location = System::Drawing::Point(1112, 241);
+			this->lbl_num->Name = L"lbl_num";
+			this->lbl_num->Size = System::Drawing::Size(21, 13);
+			this->lbl_num->TabIndex = 7;
+			this->lbl_num->Text = L"XX";
+			// 
+			// lbl_angulo
+			// 
+			this->lbl_angulo->AutoSize = true;
+			this->lbl_angulo->BackColor = System::Drawing::SystemColors::Window;
+			this->lbl_angulo->Location = System::Drawing::Point(1112, 289);
+			this->lbl_angulo->Name = L"lbl_angulo";
+			this->lbl_angulo->Size = System::Drawing::Size(21, 13);
+			this->lbl_angulo->TabIndex = 8;
+			this->lbl_angulo->Text = L"XX";
+			// 
+			// lbl_velocidad
+			// 
+			this->lbl_velocidad->AutoSize = true;
+			this->lbl_velocidad->BackColor = System::Drawing::SystemColors::Window;
+			this->lbl_velocidad->Location = System::Drawing::Point(1112, 347);
+			this->lbl_velocidad->Name = L"lbl_velocidad";
+			this->lbl_velocidad->Size = System::Drawing::Size(21, 13);
+			this->lbl_velocidad->TabIndex = 9;
+			this->lbl_velocidad->Text = L"XX";
 			// 
 			// PoliGame
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1277, 593);
+			this->Controls->Add(this->lbl_velocidad);
+			this->Controls->Add(this->lbl_angulo);
+			this->Controls->Add(this->lbl_num);
+			this->Controls->Add(this->lbl_lado);
+			this->Controls->Add(this->label5);
+			this->Controls->Add(this->label4);
+			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->progressBar1);
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->KeyPreview = true;
-			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->Margin = System::Windows::Forms::Padding(2);
 			this->MaximizeBox = false;
 			this->Name = L"PoliGame";
 			this->Text = L"PoliDash: Game";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &PoliGame::PoliGame_FormClosing);
 			this->Load += gcnew System::EventHandler(this, &PoliGame::PoliGame_Load);
 			this->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &PoliGame::PoliGame_KeyDown);
 			this->KeyUp += gcnew System::Windows::Forms::KeyEventHandler(this, &PoliGame::PoliGame_KeyUp);
@@ -193,7 +291,6 @@ namespace Polidash {
 
 		juego->KeyDown(teclapulsada);
 
-		static bool isMusicActiva = false;
 
 		if (e->KeyCode == Keys::Z) {
 			if (!isMusicActiva) {
@@ -218,6 +315,10 @@ namespace Polidash {
 private: System::Void progressBar1_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 
+private: System::Void PoliGame_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
+	//Esto se llama cuando el form se cierra
+	soniditoTime->Stop();
+}
 };
 }
 
