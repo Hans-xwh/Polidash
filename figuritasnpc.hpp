@@ -25,24 +25,6 @@ public:
     }
 
     void autoMove() {
-        /*switch (tramo) {
-        case 1:
-            dx = speed;
-            dy = 0;
-            break;
-        case 2:
-            dx = 0;
-            dy = speed;
-            break;
-        case 3:
-            dx = -speed;
-            dy = 0;
-            break;
-        default:
-            dx = speed;
-            dy = 0;
-            break;
-        }*/
         x += dx * speed;
         y += dy * speed;
     }

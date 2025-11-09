@@ -45,8 +45,12 @@ public:
     }
 
     void autoMove(int lx, int ly) {
-        x += dx;
-        y += dy;
+        if (x+dx > 0 && x+ dx + size < lx) {
+            x += dx;
+        }
+        if (y+ dy > 0 && y + dy+ size < ly) {
+            y += dy;
+        }
     }
 
 	void setTramo(int T) { tramo = T; }
