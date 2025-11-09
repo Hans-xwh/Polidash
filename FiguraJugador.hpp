@@ -44,7 +44,7 @@ public:
         }
     }
 
-    void autoMove() override {
+    void autoMove(int lx, int ly) {
         x += dx;
         y += dy;
     }

@@ -229,7 +229,7 @@ public:
 	float Update(Graphics^ g) {
 		Random^ r = gcnew Random();
 		//primero hay que mover todo
-		jugador->autoMove();
+		jugador->autoMove(limitX, limitY);
 		
 		for (int i = 0; i < figuras.size(); i++) {
 			FiguritasNPC* figura = figuras[i];

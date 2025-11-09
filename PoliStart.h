@@ -259,7 +259,7 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	this->Hide();
 	Creditos^ game = gcnew Creditos();
 	game->ShowDialog();
-	this->Close();
+	this->Show();
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->Hide();

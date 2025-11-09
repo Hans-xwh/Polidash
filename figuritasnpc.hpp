@@ -24,7 +24,7 @@ public:
         size = S;
     }
 
-    void autoMove() override {
+    void autoMove() {
         /*switch (tramo) {
         case 1:
             dx = speed;
