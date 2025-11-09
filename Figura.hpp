@@ -183,6 +183,7 @@ public:
 	void setDy(int DY) { dy = DY; }
 	void setSize(int S) { size = S; }
 	void setNumero(int N) { numero = N; }
+	void setColor(int C) { color = C; }
 	void SumaNum(int N) { 
 		numero += N;
 		if (numero < 0) numero = 0;
@@ -199,6 +200,7 @@ public:
 	int getNum() { return numero; }
 	int getColor() { return color; }
 	int getLados() { return int(shape); }
+	int getSize() { return size; }
 
 	Rectangle getRect() {
 		return Rectangle(x, y, size, size);

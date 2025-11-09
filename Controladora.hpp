@@ -15,7 +15,7 @@ private:
 	int tramo;
 	int transcurrido;
 	int maxTiempo;
-	int playerColor;
+	int figurasPlayerColor;
 	int limitX, limitY;
 
 public:
@@ -24,22 +24,31 @@ public:
 		jugador = new Jugador(700, 10, r->Next(0, 3));
 		minifigura = new Figura(10, 10, 10, jugador->getColor());
 		jugador->setSpeed(10);
-		playerColor = 1;
+		figurasPlayerColor = 0;
 		maxFiguras = 5;
-		tramo = 2;
+		tramo = 1;
 		transcurrido = 0;
 		maxTiempo = 600;
 		limitX = 800;
 		limitY = 600;
 
 		for (int i = 0; i < maxFiguras; i++) {
-			figuras.push_back(new FiguritasNPC(
+			FiguritasNPC* f = new FiguritasNPC(
 				r->Next(50, 300),
 				r->Next(50, 300),
 				r->Next(40, 85),
 				r->Next(0, 3),
 				false,	//Esto hay que cambiarlo para que compruebe si es igual al jugador
-				1));
+				1);
+			figuras.push_back(f);
+			if (f->getColor() == jugador->getColor()) {
+				figurasPlayerColor++;
+			}
+			if (tramo != 3 && jugador->getLados() >= 9) {
+				while (f->getColor() == jugador->getColor()) {
+					f->setColor(r->Next(0, 3));
+				}
+			}
 			_sleep(16);
 		}
 	}
@@ -92,12 +101,21 @@ public:
 				maxTiempo, g->VisibleClipBounds.Height,
 				1006, 21, 249 - 10, 60);		//el -10 es para que no se salga del borde
 			break;
+
 		case 2:
 			g->FillRectangle(Brushes::LightCyan, 1185, 87, 70, 354);
 
 			MiniFigInRange(jugador->getX(), transcurrido,
-				g->VisibleClipBounds.Width - (g->VisibleClipBounds.Width - 978), maxTiempo,
+				g->VisibleClipBounds.Width - (g->VisibleClipBounds.Width - 978), maxTiempo,	//Se tiene que tener en cuenta el offset por la interfaz
 				1185, 87, 70, 354-10);
+			break;
+
+		case 3:
+			g->FillRectangle(Brushes::LightGreen, 1006, 447, 249, 60);
+
+			MiniFigInRange(maxTiempo - transcurrido, jugador->getY(),
+				maxTiempo, g->VisibleClipBounds.Height,
+				1006, 447, 249-10, 60);
 			break;
 		}
 
@@ -114,8 +132,25 @@ public:
 		//primero hay que mover todo
 		jugador->autoMove();
 		
-		for (FiguritasNPC* figura : figuras) {
+		for (int i = 0; i < figuras.size(); i++) {
+			FiguritasNPC* figura = figuras[i];
 			figura->autoMove();
+
+			//comprobar si se sale de pantalla
+			
+			if (tramo == 1 && figura->getX() > 980) {
+				delete figura;
+				figuras.erase(figuras.begin() + i);
+			}
+			else if(tramo == 2 && figura->getY() + figura->getSize() < 0){
+				delete figura;
+				figuras.erase(figuras.begin() + i);
+			}
+			else if (tramo == 3 && figura->getX() + figura->getSize() < 0) {
+				delete figura;
+				figuras.erase(figuras.begin() + i);
+			}
+
 		}
 
 		//luego comprobar colisiones
@@ -138,19 +173,36 @@ public:
 					minifigura->setLados(jugador->getLados());
 				}
 
+				if(figura->getColor() == jugador->getColor()){
+					figurasPlayerColor--;
+				}
 				delete figura;
 				figuras.erase(figuras.begin() + i);
 			}
+		}
 
-			while (figuras.size() < maxFiguras) {
-				figuras.push_back(new FiguritasNPC(
-					r->Next(50, 300),
-					r->Next(50, 300),
-					r->Next(40, 85),
-					r->Next(0, 3),
-					false,	//Esto hay que cambiarlo para que compruebe si es igual al jugador
-					1));
+		while (figuras.size() < maxFiguras) {
+			FiguritasNPC* f = new FiguritasNPC(
+				-75,
+				r->Next(50, 300),
+				r->Next(40, 85),
+				r->Next(0, 3),
+				false,	//Esto hay que cambiarlo para que compruebe si es igual al jugador
+				1);
+
+			//Hay que cuidar que no sea del mismo color que el jugador si se han alcanzado 9 lados 
+			if (f->getColor() == jugador->getColor()) {
+				figurasPlayerColor++;
 			}
+
+			if(tramo != 3 && figurasPlayerColor + jugador->getLados() >9){
+				while(f->getColor() == jugador->getColor()){
+					f->setColor(r->Next(0, 3));
+				}
+				figurasPlayerColor--;
+			}
+
+			figuras.push_back(f);
 		}
 
 		transcurrido += 1;
