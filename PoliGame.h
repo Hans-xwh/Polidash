@@ -90,6 +90,7 @@ namespace Polidash {
 
 	private: System::Windows::Forms::Label^ lbl_velocidad;
 	private: System::Windows::Forms::Label^ label6;
+	private: System::Windows::Forms::Label^ lbl_pausa;
 
 		   static bool isMusicActiva;
 
@@ -113,6 +114,7 @@ namespace Polidash {
 			this->lbl_angulo = (gcnew System::Windows::Forms::Label());
 			this->lbl_velocidad = (gcnew System::Windows::Forms::Label());
 			this->label6 = (gcnew System::Windows::Forms::Label());
+			this->lbl_pausa = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// timer1
@@ -213,11 +215,25 @@ namespace Polidash {
 			this->label6->Text = L"Pulsa Z para activar y C para desactivar la música.";
 			this->label6->Click += gcnew System::EventHandler(this, &PoliGame::label1_Click);
 			// 
+			// lbl_pausa
+			// 
+			this->lbl_pausa->AutoSize = true;
+			this->lbl_pausa->BackColor = System::Drawing::SystemColors::Window;
+			this->lbl_pausa->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 36, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->lbl_pausa->Location = System::Drawing::Point(352, 161);
+			this->lbl_pausa->Name = L"lbl_pausa";
+			this->lbl_pausa->Size = System::Drawing::Size(192, 55);
+			this->lbl_pausa->TabIndex = 10;
+			this->lbl_pausa->Text = L"PAUSA";
+			this->lbl_pausa->Visible = false;
+			// 
 			// PoliGame
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1277, 593);
+			this->Controls->Add(this->lbl_pausa);
 			this->Controls->Add(this->lbl_velocidad);
 			this->Controls->Add(this->lbl_angulo);
 			this->Controls->Add(this->lbl_num);
@@ -334,6 +350,15 @@ namespace Polidash {
 		if (e->KeyCode == Keys::Up || e->KeyCode == Keys::Down || e->KeyCode == Keys::Left || e->KeyCode == Keys::Right||
 			e->KeyCode == Keys::W || e->KeyCode == Keys::S || e->KeyCode == Keys::A || e->KeyCode == Keys::D){
 			juego->keyUp(NADA);
+		}
+		else if (e->KeyCode == Keys::Space) {
+			this->timer1->Enabled = !this->timer1->Enabled;
+
+			if (this->timer1->Enabled) {
+				this->lbl_pausa->Visible = false;
+			}else{
+				this->lbl_pausa->Visible = true;
+			}
 		}
 	}
 private: System::Void progressBar1_Click(System::Object^ sender, System::EventArgs^ e) {
