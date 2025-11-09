@@ -198,6 +198,7 @@ public:
 	int getColor() { return color; }
 	int getLados() { return int(shape); }
 	int getSize() { return size; }
+	int getSpeed() { return speed; }
 
 	Rectangle getRect() {
 		return Rectangle(x, y, size, size);

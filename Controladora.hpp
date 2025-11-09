@@ -323,6 +323,15 @@ public:
 	void keyUp(Dir d) {
 		jugador->mover(NADA);
 	}
+
+
+	int getladosJugador() { return jugador->getLados(); }
+	int getTramo() { return tramo; }
+	int getSumaAngulos() {
+		return (jugador->getLados() - 2) * 180;
+	}
+	int getVelocidadJugador() { return jugador->getSpeed(); }
+	int getNumeroJugador() { return jugador->getNum(); }
 };
 
 //compilame esta

@@ -118,7 +118,7 @@ namespace Polidash {
 			// timer1
 			// 
 			this->timer1->Enabled = true;
-			this->timer1->Interval = 1;
+			this->timer1->Interval = 16;
 			this->timer1->Tick += gcnew System::EventHandler(this, &PoliGame::timer1_Tick);
 			// 
 			// label2
@@ -272,6 +272,14 @@ namespace Polidash {
 			d->ShowDialog();
 			this->Close();
 		}
+
+		//Actualizar labels
+		lbl_lado->Text = Convert::ToString(juego->getladosJugador());
+		lbl_num->Text = Convert::ToString(juego->getNumeroJugador());
+		lbl_angulo->Text = Convert::ToString(juego->getSumaAngulos());
+		lbl_velocidad->Text = Convert::ToString(juego->getVelocidadJugador());
+
+
 
 
 		juego->DrawAll(bCanvas->Graphics);
