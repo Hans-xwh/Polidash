@@ -27,31 +27,36 @@ public:
         case t3:
             dx = 0;
             if (tecla == ARRIBA) {
-                dy = -speed;
+                dy = -1;
             }
             else if (tecla == ABAJO) {
-                dy = speed;
+                dy = 1;
             }
             break;
         case t2:
             dy = 0;
             if (tecla == IZQUIERDA) {
-                dx = -speed;
+                dx = -1;
             }
             else if (tecla == DERECHA) {
-                dx = speed;
+                dx = 1;
             }
             break;
         }
     }
 
     void autoMove(int lx, int ly) {
-        if (x+dx > 0 && x+ dx + size < lx) {
-            x += dx;
+        if (x + (dx * speed) > 0 && x + (dx * speed) + size < lx) {
+            x += dx * speed;
         }
-        if (y+ dy > 0 && y + dy+ size < ly) {
-            y += dy;
+        if (y + (dy * speed) > 0 && y + (dy * speed) + size < ly) {
+            y += dy * speed;
         }
+    }
+
+    void bounce() {
+		dx = -dx;
+		dy = -dy;
     }
 
 	void setTramo(int T) { tramo = T; }

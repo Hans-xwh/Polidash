@@ -93,7 +93,7 @@ namespace Polidash {
 				static_cast<System::Byte>(0)));
 			this->btn_player->ForeColor = System::Drawing::Color::Yellow;
 			this->btn_player->Location = System::Drawing::Point(454, 208);
-			this->btn_player->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->btn_player->Margin = System::Windows::Forms::Padding(2);
 			this->btn_player->Name = L"btn_player";
 			this->btn_player->Size = System::Drawing::Size(343, 84);
 			this->btn_player->TabIndex = 0;
@@ -108,7 +108,7 @@ namespace Polidash {
 				static_cast<System::Byte>(0)));
 			this->btn_auto->ForeColor = System::Drawing::Color::Yellow;
 			this->btn_auto->Location = System::Drawing::Point(454, 311);
-			this->btn_auto->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->btn_auto->Margin = System::Windows::Forms::Padding(2);
 			this->btn_auto->Name = L"btn_auto";
 			this->btn_auto->Size = System::Drawing::Size(345, 80);
 			this->btn_auto->TabIndex = 1;
@@ -138,7 +138,7 @@ namespace Polidash {
 			this->pictureBox1->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.BackgroundImage")));
 			this->pictureBox1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->pictureBox1->Location = System::Drawing::Point(253, 41);
-			this->pictureBox1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->pictureBox1->Margin = System::Windows::Forms::Padding(2);
 			this->pictureBox1->Name = L"pictureBox1";
 			this->pictureBox1->Size = System::Drawing::Size(146, 126);
 			this->pictureBox1->TabIndex = 3;
@@ -151,7 +151,7 @@ namespace Polidash {
 			this->button2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->button2->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
 			this->button2->Location = System::Drawing::Point(34, 293);
-			this->button2->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->button2->Margin = System::Windows::Forms::Padding(2);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(215, 125);
 			this->button2->TabIndex = 5;
@@ -180,7 +180,7 @@ namespace Polidash {
 				static_cast<System::Byte>(0)));
 			this->button3->ForeColor = System::Drawing::Color::Yellow;
 			this->button3->Location = System::Drawing::Point(335, 418);
-			this->button3->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->button3->Margin = System::Windows::Forms::Padding(2);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(563, 37);
 			this->button3->TabIndex = 7;
@@ -193,7 +193,7 @@ namespace Polidash {
 			this->button4->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->button4->ForeColor = System::Drawing::SystemColors::ButtonFace;
 			this->button4->Location = System::Drawing::Point(18, 435);
-			this->button4->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->button4->Margin = System::Windows::Forms::Padding(2);
 			this->button4->Name = L"button4";
 			this->button4->Size = System::Drawing::Size(106, 32);
 			this->button4->TabIndex = 8;
@@ -206,7 +206,7 @@ namespace Polidash {
 			this->button5->BackColor = System::Drawing::SystemColors::ControlText;
 			this->button5->ForeColor = System::Drawing::SystemColors::ButtonFace;
 			this->button5->Location = System::Drawing::Point(153, 434);
-			this->button5->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->button5->Margin = System::Windows::Forms::Padding(2);
 			this->button5->Name = L"button5";
 			this->button5->Size = System::Drawing::Size(109, 33);
 			this->button5->TabIndex = 9;
@@ -233,7 +233,7 @@ namespace Polidash {
 			this->Controls->Add(this->btn_player);
 			this->ForeColor = System::Drawing::SystemColors::ControlText;
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
-			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->Margin = System::Windows::Forms::Padding(2);
 			this->MaximizeBox = false;
 			this->Name = L"PoliStart";
 			this->Text = L"PoliDash: Menu";
@@ -252,12 +252,6 @@ namespace Polidash {
 	}
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-	this->Hide();
-	Derrota^ game = gcnew Derrota();
-	game->ShowDialog();
-	this->Close();
-}
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->Hide();
 	Creditos^ game = gcnew Creditos();

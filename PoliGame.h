@@ -26,7 +26,7 @@ namespace Polidash {
 	public:
 		SoundPlayer^ soniditoTime = gcnew SoundPlayer("Audio/TimeMachine.wav");
 
-		PoliGame(bool autoM)
+		PoliGame(bool M)
 		{
 			InitializeComponent();
 			//
@@ -35,8 +35,8 @@ namespace Polidash {
 			//jugador = new Jugador(100, 100, t1);
 			//testFig = new Figura(10, 10, 200, Shapes::HEXAGONO);
 			//pruebita = new FiguritasNPC(10, 10, 100, true, 1);
-			this->autoM = autoM;
-			juego = new Juego();
+			this->autoM = M;
+			juego = new Juego(autoM);
 			isMusicActiva = false;
 		}
 
@@ -330,9 +330,9 @@ namespace Polidash {
 		//Render
 		bCanvas->Render(g);
 
-		delete bCanvas;
-		delete myBuffer;
-		delete g;
+		if(bCanvas) delete bCanvas;
+		if(myBuffer) delete myBuffer;
+		if(g) delete g;
 	}
 	private: System::Void PoliGame_Load(System::Object^ sender, System::EventArgs^ e) {
 	}

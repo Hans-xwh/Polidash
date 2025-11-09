@@ -21,9 +21,10 @@ private:
 	int autoCurrent, autoMax;
 	int figurasPlayerColor;
 	int limitX, limitY;
+	bool autoM;
 
 public:
-	Juego() {
+	Juego(bool aM) {
 		Random^ r = gcnew Random();
 		jugador = new Jugador(40, 10, r->Next(0, 3));
 		minifigura = new Figura(10, 10, 10, jugador->getColor());
@@ -34,9 +35,13 @@ public:
 		jugador->setTramo(tramo);
 		transcurrido = 0;
 		maxTiempo = 600;
-		autoCurrent = autoMax = 0;
+		autoCurrent = 0;
+		autoMax = 50;
 		limitX = 980;
 		limitY = 593;
+		autoM = aM;
+
+		if (autoM) { jugador->setDy(1); }
 
 		for (int i = 0; i < maxFiguras; i++) {
 			/*FiguritasNPC* f = new FiguritasNPC(
@@ -147,10 +152,16 @@ public:
 		if (tramo == 2) {
 			jugador->setX(limitX / 2);
 			jugador->setY(40);
+			if (autoM) {
+				jugador->setDy(0); jugador->setDx(1);
+			}
 		}
 		else {
 			jugador->setX(limitX - 150);
 			jugador->setY(limitY / 2);
+			if (autoM) {
+				jugador->setDy(1); jugador->setDx(0);
+			}
 		}
 		transcurrido = 0;
 		//Limpiar figuras y regenerar
@@ -210,7 +221,6 @@ public:
 				g->VisibleClipBounds.Width - (g->VisibleClipBounds.Width - 978), maxTiempo,	//Se tiene que tener en cuenta el offset por la interfaz
 				1185, 87, 70-7, 354-10);
 			break;
-
 		case 3:
 			g->FillRectangle(Brushes::LightGreen, 1006, 447, 249, 60);
 
@@ -235,8 +245,18 @@ public:
 			return 2;	//Derrota
 		};
 
-		//primero hay que mover todo
+		//movimiento automatico
+		if (autoM) {
+			autoCurrent++;
+			if (autoCurrent >= autoMax) {
+				autoCurrent = 0;
+				autoMax = r->Next(5, 75);
+				jugador->bounce();
+			}
+		}
 
+
+		//primero hay que mover todo
 		jugador->autoMove(limitX, limitY);
 		
 		for (int i = 0; i < figuras.size(); i++) {
