@@ -52,20 +52,12 @@ public:
 		if (shape < TRIANGULO || shape>DECAGONO) {
 			shape = TRIANGULO;
 		}
-		if (size <= 10) {
+		if (size < 10) {
 			shape = TRIANGULO;
 			size = 10;
 		}
 
-		if (shape == TRIANGULO) {
-			array<Point>^ p = {
-				Point(x + (size / 2), y),
-				Point(x, y + (size)),
-				Point(x + size, y + size)
-			};
-			return p;
-		}
-		else if (shape == CUADRADO) {
+		if (shape == CUADRADO) {
 			array<Point>^ p = {
 				Point(x,y),
 				Point(x,y + size),
@@ -92,7 +84,7 @@ public:
 				float px = centroX + radio * cos(angulo);
 				float py = centroY + radio * sin(angulo);
 
-				p[i] = Point(px, py);
+				p[i] = Point(int(px), int(py));
 			}
 			return p;
 		}

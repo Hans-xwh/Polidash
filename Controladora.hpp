@@ -343,7 +343,9 @@ public:
 	}
 
 	void keyUp(Dir d) {
-		jugador->mover(NADA);
+		if (!autoM) {
+			jugador->mover(NADA);
+		}
 	}
 
 

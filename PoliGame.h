@@ -64,6 +64,7 @@ namespace Polidash {
 		//Jugador* jugador;
 		bool autoM;
 		Juego* juego;
+		bool isMusicActiva;
 
 
 	private: System::Windows::Forms::Label^ label2;
@@ -94,7 +95,7 @@ namespace Polidash {
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 
-		   static bool isMusicActiva;
+		   
 
 
 #pragma region Windows Form Designer generated code
@@ -308,53 +309,61 @@ namespace Polidash {
 		//Operaciones de dibujado aqui
 		//bCanvas->Graphics->Clear(Color::White);	//El fondo se dibuja en DrawAll()
 
-		//Comprobacion de victoria
-		int result = juego->Update(bCanvas->Graphics);
-		if (result == 1) {
-			this->timer1->Enabled = false;
-			Victoria^ v = gcnew Victoria();
-			this->Hide();
-			soniditoTime->Stop();
-			v->ShowDialog();
-			this->Close();
-		}else if (result == 2) {
-			this->timer1->Enabled = false;
-			Derrota^ d = gcnew Derrota();
-			this->Hide();
-			soniditoTime->Stop();
-			d->ShowDialog();
-			this->Close();
+		try {
+
+			//Comprobacion de victoria
+			int result = juego->Update(bCanvas->Graphics);
+			if (result == 1) {
+				this->timer1->Enabled = false;
+				Victoria^ v = gcnew Victoria();
+				soniditoTime->Stop();
+				this->Hide();
+				v->ShowDialog();
+				this->Close();
+				return;
+			}
+			else if (result == 2) {
+				this->timer1->Enabled = false;
+				Derrota^ d = gcnew Derrota();
+				soniditoTime->Stop();
+				this->Hide();
+				d->ShowDialog();
+				this->Close();
+				return;
+			}
+
+			//Actualizar labels
+			lbl_lado->Text = Convert::ToString(juego->getladosJugador());
+			lbl_num->Text = Convert::ToString(juego->getNumeroJugador());
+			lbl_angulo->Text = Convert::ToString(juego->getSumaAngulos());
+			lbl_velocidad->Text = Convert::ToString(juego->getVelocidadJugador());
+
+
+
+
+			juego->DrawAll(bCanvas->Graphics);
+
+			//mover y dibujar
+			/*
+			pruebita->autoMove();
+			pruebita->draw(bCanvas->Graphics);
+
+			//jugador
+			jugador->autoMove();
+			jugador->draw(bCanvas->Graphics);
+
+			testFig->draw(bCanvas->Graphics);
+			*/
+
+			//Render
+			bCanvas->Render(g);
+
+			if (bCanvas != nullptr) bCanvas->~BufferedGraphics();
+			if (g != nullptr) delete g;
 		}
-
-		//Actualizar labels
-		lbl_lado->Text = Convert::ToString(juego->getladosJugador());
-		lbl_num->Text = Convert::ToString(juego->getNumeroJugador());
-		lbl_angulo->Text = Convert::ToString(juego->getSumaAngulos());
-		lbl_velocidad->Text = Convert::ToString(juego->getVelocidadJugador());
-
-
-
-
-		juego->DrawAll(bCanvas->Graphics);
-
-		//mover y dibujar
-		/*
-		pruebita->autoMove();
-		pruebita->draw(bCanvas->Graphics);
-
-		//jugador
-		jugador->autoMove();
-		jugador->draw(bCanvas->Graphics);
-
-		testFig->draw(bCanvas->Graphics);
-		*/
-
-		//Render
-		bCanvas->Render(g);
-
-		if(bCanvas) delete bCanvas;
-		if(myBuffer) delete myBuffer;
-		if(g) delete g;
+		catch (Exception^ ex) {
+			//cout << "Crj" + string(ex)
+		}
 	}
 	private: System::Void PoliGame_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
