@@ -129,6 +129,8 @@ public:
 			}
 			figurasPlayerColor--;
 		}
+
+		f->setSpeed(r->Next(5, 10));
 		return f;
 	}
 

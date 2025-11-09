@@ -257,8 +257,9 @@ namespace Polidash {
 	private: System::Void btn_player_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Hide();
 		PoliGame^ game = gcnew PoliGame();
+		sonidito->Stop();
 		game->ShowDialog();
-		this->Close();
+		this->Show();
 	}
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
@@ -278,7 +279,7 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 	this->Hide();
 	Instrucciones^ game = gcnew Instrucciones();
 	game->ShowDialog();
-	this->Close();
+	this->Show();
 }
 
 private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {

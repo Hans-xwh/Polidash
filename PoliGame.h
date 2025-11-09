@@ -60,6 +60,7 @@ namespace Polidash {
 		Juego* juego;
 	private: System::Windows::Forms::ProgressBar^ progressBar1;
 	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Label^ label2;
 
 
 
@@ -86,6 +87,7 @@ namespace Polidash {
 			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->progressBar1 = (gcnew System::Windows::Forms::ProgressBar());
 			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// timer1
@@ -96,32 +98,43 @@ namespace Polidash {
 			// 
 			// progressBar1
 			// 
-			this->progressBar1->Location = System::Drawing::Point(1319, 687);
-			this->progressBar1->Margin = System::Windows::Forms::Padding(4);
+			this->progressBar1->Location = System::Drawing::Point(989, 558);
 			this->progressBar1->Name = L"progressBar1";
-			this->progressBar1->Size = System::Drawing::Size(355, 28);
+			this->progressBar1->Size = System::Drawing::Size(266, 23);
 			this->progressBar1->TabIndex = 0;
 			this->progressBar1->Click += gcnew System::EventHandler(this, &PoliGame::progressBar1_Click);
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(12, 699);
+			this->label1->Location = System::Drawing::Point(9, 568);
+			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(308, 16);
+			this->label1->Size = System::Drawing::Size(246, 13);
 			this->label1->TabIndex = 1;
 			this->label1->Text = L"Pulsa Z para activar y C para desactivar la música.";
 			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->BackColor = System::Drawing::SystemColors::Window;
+			this->label2->Location = System::Drawing::Point(1010, 398);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(40, 13);
+			this->label2->TabIndex = 2;
+			this->label2->Text = L"Texto: ";
+			// 
 			// PoliGame
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1703, 730);
+			this->ClientSize = System::Drawing::Size(1277, 593);
+			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->progressBar1);
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->KeyPreview = true;
-			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->MaximizeBox = false;
 			this->Name = L"PoliGame";
 			this->Text = L"PoliDash: Game";
