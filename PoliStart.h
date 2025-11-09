@@ -4,7 +4,7 @@
 #include "Victoria.h"
 #include "Derrota.h"
 #include "Instrucciones.h"
-
+#include "Creditos.h"
 namespace Polidash {
 
 	using namespace System;
@@ -257,13 +257,13 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->Hide();
-	Victoria^ game = gcnew Victoria();
+	Creditos^ game = gcnew Creditos();
 	game->ShowDialog();
 	this->Close();
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->Hide();
-	Instrucciones^ game = gcnew Instrucciones();
+	Instrucciones ^ game = gcnew Instrucciones();
 	game->ShowDialog();
 	this->Show();
 }

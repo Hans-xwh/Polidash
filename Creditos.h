@@ -34,6 +34,8 @@ namespace Polidash {
 				delete components;
 			}
 		}
+	private: System::Windows::Forms::Button^ button1;
+	protected:
 
 	private:
 		/// <summary>
@@ -48,12 +50,48 @@ namespace Polidash {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->components = gcnew System::ComponentModel::Container();
-			this->Size = System::Drawing::Size(300,300);
-			this->Text = L"Creditos";
-			this->Padding = System::Windows::Forms::Padding(0);
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Creditos::typeid));
+			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->SuspendLayout();
+			// 
+			// button1
+			// 
+			this->button1->BackColor = System::Drawing::SystemColors::Info;
+			this->button1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
+			this->button1->Font = (gcnew System::Drawing::Font(L"Cooper Black", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(64)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->button1->ImageAlign = System::Drawing::ContentAlignment::TopRight;
+			this->button1->Location = System::Drawing::Point(804, -1);
+			this->button1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->button1->Name = L"button1";
+			this->button1->RightToLeft = System::Windows::Forms::RightToLeft::No;
+			this->button1->Size = System::Drawing::Size(226, 54);
+			this->button1->TabIndex = 1;
+			this->button1->Text = L"VOLVER AL MENÚ";
+			this->button1->UseVisualStyleBackColor = false;
+			this->button1->Click += gcnew System::EventHandler(this, &Creditos::button1_Click);
+			// 
+			// Creditos
+			// 
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
+			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->ClientSize = System::Drawing::Size(1032, 610);
+			this->Controls->Add(this->button1);
+			this->DoubleBuffered = true;
+			this->ForeColor = System::Drawing::SystemColors::ControlText;
+			this->Name = L"Creditos";
+			this->Text = L"Creditos";
+			this->ResumeLayout(false);
+
 		}
 #pragma endregion
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Hide();
+		this->Close();
+	}
 	};
 }
