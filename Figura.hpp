@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cmath>
 using namespace System::Drawing;
 
 //Direcciones
@@ -32,6 +33,7 @@ protected:
 	int size;		//todas las figuras son "cuadradas"
 	int numero;
 	int color;
+	bool showText;
 	Shapes shape;
 
 public:
@@ -43,6 +45,57 @@ public:
 		shape = S;
 		numero = 0;
 		color = C;
+		showText = true;
+	}
+
+	array<Point>^ damePuntosPerfectos() {
+		if (shape < TRIANGULO || shape>DECAGONO) {
+			shape = TRIANGULO;
+		}
+		if (size <= 10) {
+			shape = TRIANGULO;
+			size = 10;
+		}
+
+		if (shape == TRIANGULO) {
+			array<Point>^ p = {
+				Point(x + (size / 2), y),
+				Point(x, y + (size)),
+				Point(x + size, y + size)
+			};
+			return p;
+		}
+		else if (shape == CUADRADO) {
+			array<Point>^ p = {
+				Point(x,y),
+				Point(x,y + size),
+				Point(x + size, y + size),
+				Point(x + size, y),
+			};
+			return p;
+		}
+		else {
+
+			int lados = int(shape);
+			array<Point>^ p = gcnew array<Point>(lados);
+			float centroX = x + size / 2.0f;
+			float centroY = y + size / 2.0f;
+			float radio = size / 2.0f;
+
+			float step = 2 * 3.14159265f / lados; //angulo entre vertices
+
+			float offset = -3.14159265f / 2;	//esto pone el "origen" de cada punto en la esquina superior izquierda.
+
+			for (int i = 0; i < lados; i++) {
+				float angulo = offset + i * step;
+
+				float px = centroX + radio * cos(angulo);
+				float py = centroY + radio * sin(angulo);
+
+				p[i] = Point(px, py);
+			}
+			return p;
+		}
 	}
 
 	array<Point>^ damePuntos() {	//basado en la figura actual retorna los puntos convertidos a coordenadas globales
@@ -172,13 +225,13 @@ public:
 		//shape = Shapes(10);		//Esta linea solo para pruebas, la forma no se debe fijar aqui
 		Brush^ b = dameBrocha(color);
 
-		array<Point>^ puntos = damePuntos();
+		array<Point>^ puntos = damePuntosPerfectos();
 		g->FillPolygon(b, puntos);
 		g->DrawPolygon(Pens::Black, puntos);
 
 		//Numero interior
-		if (numero >= 0) {
-			g->DrawString(numero.ToString(), gcnew Font("Arial", size / 8), Brushes::Black, Rectangle(x + (size/2)-(size/10), y + (size / 2)- (size / 10), size / 8, size / 8 + 10));
+		if (showText && numero >= 0) {
+			g->DrawString(numero.ToString(), gcnew Font("Arial", size / 8), Brushes::Black, Rectangle(x + (size/2)-(size/10), y + (size / 2)- (size / 10), (size / 8)+20, size / 8 + 20));
 		}
 	}
 

@@ -14,7 +14,7 @@ private:
     int tramo;
 
 public:
-	Jugador(int X, int Y, int C, int T = 1) : Figura(X, Y, 50, C, Shapes::TRIANGULO), tramo(T) {
+	Jugador(int X, int Y, int C, int T = 1) : Figura(X, Y, 75, C, Shapes::TRIANGULO), tramo(T) {
         dx = dy = 0;
 
 	}
