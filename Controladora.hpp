@@ -28,7 +28,7 @@ public:
 		Random^ r = gcnew Random();
 		jugador = new Jugador(40, 10, r->Next(0, 3));
 		minifigura = new Figura(10, 10, 10, jugador->getColor());
-		jugador->setSpeed(10);
+		jugador->setSpeed(7);
 		figurasPlayerColor = 0;
 		maxFiguras = 5;
 		tramo = 1;
@@ -147,6 +147,8 @@ public:
 	void cambioTramo() {
 		Random^ r = gcnew Random();
 		tramo++;
+
+		jugador->setSpeed(r->Next(8, 11));
 
 		jugador->setTramo(tramo);
 		if (tramo == 2) {
