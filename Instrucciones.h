@@ -35,6 +35,10 @@ namespace Polidash {
 			}
 		}
 
+	protected:
+
+
+
 	private:
 		/// <summary>
 		/// Required designer variable.
@@ -53,10 +57,15 @@ namespace Polidash {
 			// 
 			// Instrucciones
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(284, 261);
+			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
+			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->ClientSize = System::Drawing::Size(1088, 639);
+			this->ForeColor = System::Drawing::Color::CornflowerBlue;
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedDialog;
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
+			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->MaximizeBox = false;
 			this->Name = L"Instrucciones";
 			this->Text = L"PoliDash: Instrucciones";
