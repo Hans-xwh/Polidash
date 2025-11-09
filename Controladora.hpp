@@ -87,14 +87,14 @@ public:
 			break;
 		case 2:
 			f = new FiguritasNPC(
-				r->Next(10, 980+10),
-				-r->Next(10, 75),
+				r->Next(10, limitX-20),
+				limitY + r->Next(10, 75),
 				r->Next(40, 85),
 				r->Next(0, 3),
 				false,	//Esto hay que cambiarlo para que compruebe si es igual al jugador
 				1);
 			f->setDx(0);
-			f->setDy(1);
+			f->setDy(-1);
 			break;
 		case 3:
 			f = new FiguritasNPC(
@@ -144,7 +144,7 @@ public:
 		jugador->setTramo(tramo);
 		if (tramo == 2) {
 			jugador->setX(limitX / 2);
-			jugador->setY(400);
+			jugador->setY(40);
 		}
 		else {
 			jugador->setX(limitX - 150);
@@ -242,7 +242,7 @@ public:
 				delete figura;
 				figuras.erase(figuras.begin() + i);
 			}
-			else if(tramo == 2 && figura->getY() + figura->getSize() > g->VisibleClipBounds.Height){
+			else if(tramo == 2 && figura->getY() < -10 - figura->getSize()){
 				if (figura->getColor() == jugador->getColor()) figurasPlayerColor--;
 				delete figura;
 				figuras.erase(figuras.begin() + i);

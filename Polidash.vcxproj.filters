@@ -30,6 +30,9 @@
     <ClCompile Include="Instrucciones.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="Creditos.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PoliStart.h">
@@ -57,6 +60,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Instrucciones.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Creditos.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
