@@ -13,6 +13,7 @@ namespace Polidash {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Media;
 
 	/// <summary>
 	/// Summary for PoliGame
@@ -20,6 +21,9 @@ namespace Polidash {
 	public ref class PoliGame : public System::Windows::Forms::Form
 	{
 	public:
+
+		SoundPlayer^ sonidito = gcnew SoundPlayer("SonidosGame.wav");
+
 		PoliGame(void)
 		{
 			InitializeComponent();
