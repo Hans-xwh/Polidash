@@ -91,6 +91,7 @@ namespace Polidash {
 	private: System::Windows::Forms::Label^ lbl_velocidad;
 	private: System::Windows::Forms::Label^ label6;
 	private: System::Windows::Forms::Label^ lbl_pausa;
+	private: System::Windows::Forms::Label^ label1;
 
 		   static bool isMusicActiva;
 
@@ -115,6 +116,7 @@ namespace Polidash {
 			this->lbl_velocidad = (gcnew System::Windows::Forms::Label());
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->lbl_pausa = (gcnew System::Windows::Forms::Label());
+			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// timer1
@@ -207,7 +209,7 @@ namespace Polidash {
 			// 
 			this->label6->AutoSize = true;
 			this->label6->BackColor = System::Drawing::SystemColors::Window;
-			this->label6->Location = System::Drawing::Point(998, 547);
+			this->label6->Location = System::Drawing::Point(998, 534);
 			this->label6->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(246, 13);
@@ -221,18 +223,31 @@ namespace Polidash {
 			this->lbl_pausa->BackColor = System::Drawing::SystemColors::Window;
 			this->lbl_pausa->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 36, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->lbl_pausa->Location = System::Drawing::Point(352, 161);
+			this->lbl_pausa->Location = System::Drawing::Point(334, 161);
 			this->lbl_pausa->Name = L"lbl_pausa";
-			this->lbl_pausa->Size = System::Drawing::Size(192, 55);
+			this->lbl_pausa->Size = System::Drawing::Size(275, 55);
 			this->lbl_pausa->TabIndex = 10;
-			this->lbl_pausa->Text = L"PAUSA";
+			this->lbl_pausa->Text = L"EN PAUSA";
 			this->lbl_pausa->Visible = false;
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->BackColor = System::Drawing::SystemColors::Window;
+			this->label1->Location = System::Drawing::Point(1042, 557);
+			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(160, 13);
+			this->label1->TabIndex = 11;
+			this->label1->Text = L"Pulsa Espacio para poner pausa";
+			this->label1->Click += gcnew System::EventHandler(this, &PoliGame::label1_Click_1);
 			// 
 			// PoliGame
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1277, 593);
+			this->Controls->Add(this->label1);
 			this->Controls->Add(this->lbl_pausa);
 			this->Controls->Add(this->lbl_velocidad);
 			this->Controls->Add(this->lbl_angulo);
@@ -274,15 +289,15 @@ namespace Polidash {
 		//Comprobacion de victoria
 		int result = juego->Update(bCanvas->Graphics);
 		if (result == 1) {
-			Victoria^ v = gcnew Victoria();
 			this->timer1->Enabled = false;
+			Victoria^ v = gcnew Victoria();
 			this->Hide();
 			soniditoTime->Stop();
 			v->ShowDialog();
 			this->Close();
 		}else if (result == 2) {
-			Derrota^ d = gcnew Derrota();
 			this->timer1->Enabled = false;
+			Derrota^ d = gcnew Derrota();
 			this->Hide();
 			soniditoTime->Stop();
 			d->ShowDialog();
@@ -369,6 +384,8 @@ private: System::Void PoliGame_FormClosing(System::Object^ sender, System::Windo
 	soniditoTime->Stop();
 }
 private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void label1_Click_1(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

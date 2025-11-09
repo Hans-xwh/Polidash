@@ -1,8 +1,6 @@
 #pragma once
 
 #include "PoliGame.h"
-#include "Victoria.h"
-#include "Derrota.h"
 #include "Instrucciones.h"
 #include "Creditos.h"
 namespace Polidash {
