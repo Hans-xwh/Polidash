@@ -38,6 +38,9 @@ namespace Polidash {
 			this->autoM = M;
 			juego = new Juego(autoM);
 			isMusicActiva = false;
+			d = gcnew Derrota();
+			v = gcnew Victoria();
+			result = 0;
 		}
 
 	protected:
@@ -76,9 +79,9 @@ namespace Polidash {
 
 
 
-
-
-
+		   int result;
+		   Victoria^ v;
+		   Derrota^ d;
 		   Dir teclapulsada;
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ label4;
@@ -312,10 +315,9 @@ namespace Polidash {
 		try {
 
 			//Comprobacion de victoria
-			int result = juego->Update(bCanvas->Graphics);
+			result = juego->Update(bCanvas->Graphics);
 			if (result == 1) {
 				this->timer1->Enabled = false;
-				Victoria^ v = gcnew Victoria();
 				soniditoTime->Stop();
 				this->Hide();
 				v->ShowDialog();
@@ -324,7 +326,7 @@ namespace Polidash {
 			}
 			else if (result == 2) {
 				this->timer1->Enabled = false;
-				Derrota^ d = gcnew Derrota();
+				
 				soniditoTime->Stop();
 				this->Hide();
 				d->ShowDialog();
