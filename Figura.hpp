@@ -186,7 +186,7 @@ public:
 		if (numero < 0) numero = 0;
 	}
 	void setLados(int L) {
-		if (L < 3 || L>10) L = 3;
+		//if (L < 3 || L>10) L = 3;
 
 		shape = Shapes(L);
 	}

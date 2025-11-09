@@ -5,6 +5,9 @@
 #include "FiguraJugador.hpp"
 #include "Controladora.hpp"
 
+#include "Victoria.h"
+#include "Derrota.h"
+
 namespace Polidash {
 
 	using namespace System;
@@ -23,7 +26,7 @@ namespace Polidash {
 	public:
 		SoundPlayer^ soniditoTime = gcnew SoundPlayer("Audio/TimeMachine.wav");
 
-		PoliGame(void)
+		PoliGame(bool autoM)
 		{
 			InitializeComponent();
 			//
@@ -32,6 +35,7 @@ namespace Polidash {
 			//jugador = new Jugador(100, 100, t1);
 			//testFig = new Figura(10, 10, 200, Shapes::HEXAGONO);
 			//pruebita = new FiguritasNPC(10, 10, 100, true, 1);
+			this->autoM = autoM;
 			juego = new Juego();
 			isMusicActiva = false;
 		}
@@ -58,9 +62,10 @@ namespace Polidash {
 		//Figura* testFig;
 		//FiguritasNPC* pruebita;
 		//Jugador* jugador;
+		bool autoM;
 		Juego* juego;
-	private: System::Windows::Forms::ProgressBar^ progressBar1;
-	private: System::Windows::Forms::Label^ label1;
+
+
 	private: System::Windows::Forms::Label^ label2;
 
 
@@ -84,6 +89,7 @@ namespace Polidash {
 	private: System::Windows::Forms::Label^ lbl_angulo;
 
 	private: System::Windows::Forms::Label^ lbl_velocidad;
+	private: System::Windows::Forms::Label^ label6;
 
 		   static bool isMusicActiva;
 
@@ -98,8 +104,6 @@ namespace Polidash {
 			this->components = (gcnew System::ComponentModel::Container());
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(PoliGame::typeid));
 			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
-			this->progressBar1 = (gcnew System::Windows::Forms::ProgressBar());
-			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
@@ -108,31 +112,14 @@ namespace Polidash {
 			this->lbl_num = (gcnew System::Windows::Forms::Label());
 			this->lbl_angulo = (gcnew System::Windows::Forms::Label());
 			this->lbl_velocidad = (gcnew System::Windows::Forms::Label());
+			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// timer1
 			// 
 			this->timer1->Enabled = true;
-			this->timer1->Interval = 33;
+			this->timer1->Interval = 1;
 			this->timer1->Tick += gcnew System::EventHandler(this, &PoliGame::timer1_Tick);
-			// 
-			// progressBar1
-			// 
-			this->progressBar1->Location = System::Drawing::Point(989, 558);
-			this->progressBar1->Name = L"progressBar1";
-			this->progressBar1->Size = System::Drawing::Size(266, 23);
-			this->progressBar1->TabIndex = 0;
-			this->progressBar1->Click += gcnew System::EventHandler(this, &PoliGame::progressBar1_Click);
-			// 
-			// label1
-			// 
-			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(9, 568);
-			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(246, 13);
-			this->label1->TabIndex = 1;
-			this->label1->Text = L"Pulsa Z para activar y C para desactivar la música.";
 			// 
 			// label2
 			// 
@@ -214,6 +201,18 @@ namespace Polidash {
 			this->lbl_velocidad->TabIndex = 9;
 			this->lbl_velocidad->Text = L"XX";
 			// 
+			// label6
+			// 
+			this->label6->AutoSize = true;
+			this->label6->BackColor = System::Drawing::SystemColors::Window;
+			this->label6->Location = System::Drawing::Point(998, 547);
+			this->label6->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(246, 13);
+			this->label6->TabIndex = 1;
+			this->label6->Text = L"Pulsa Z para activar y C para desactivar la música.";
+			this->label6->Click += gcnew System::EventHandler(this, &PoliGame::label1_Click);
+			// 
 			// PoliGame
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -227,8 +226,7 @@ namespace Polidash {
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
-			this->Controls->Add(this->label1);
-			this->Controls->Add(this->progressBar1);
+			this->Controls->Add(this->label6);
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->KeyPreview = true;
 			this->Margin = System::Windows::Forms::Padding(2);
@@ -257,7 +255,25 @@ namespace Polidash {
 		//Operaciones de dibujado aqui
 		//bCanvas->Graphics->Clear(Color::White);	//El fondo se dibuja en DrawAll()
 
-		this->progressBar1->Value = juego->Update(bCanvas->Graphics);
+		//Comprobacion de victoria
+		int result = juego->Update(bCanvas->Graphics);
+		if (result == 1) {
+			Victoria^ v = gcnew Victoria();
+			this->timer1->Enabled = false;
+			this->Hide();
+			soniditoTime->Stop();
+			v->ShowDialog();
+			this->Close();
+		}else if (result == 2) {
+			Derrota^ d = gcnew Derrota();
+			this->timer1->Enabled = false;
+			this->Hide();
+			soniditoTime->Stop();
+			d->ShowDialog();
+			this->Close();
+		}
+
+
 		juego->DrawAll(bCanvas->Graphics);
 
 		//mover y dibujar
@@ -284,10 +300,10 @@ namespace Polidash {
 	private: System::Void PoliGame_KeyDown(System::Object^ sender, KeyEventArgs^ e) {
 		teclapulsada = Dir::NADA;
 
-		if (e->KeyCode == Keys::Up)		teclapulsada = Dir::ARRIBA;
-		if (e->KeyCode == Keys::Down)	teclapulsada = Dir::ABAJO;
-		if (e->KeyCode == Keys::Right)	teclapulsada = Dir::DERECHA;
-		if (e->KeyCode == Keys::Left)	teclapulsada = Dir::IZQUIERDA;
+		if (!autoM && (e->KeyCode == Keys::Up || e->KeyCode == Keys::W))		teclapulsada = Dir::ARRIBA;
+		if (!autoM && (e->KeyCode == Keys::Down || e->KeyCode == Keys::S))	teclapulsada = Dir::ABAJO;
+		if (!autoM && (e->KeyCode == Keys::Right || e->KeyCode == Keys::D))	teclapulsada = Dir::DERECHA;
+		if (!autoM && (e->KeyCode == Keys::Left || e->KeyCode == Keys::A))	teclapulsada = Dir::IZQUIERDA;
 
 		juego->KeyDown(teclapulsada);
 
@@ -318,6 +334,8 @@ private: System::Void progressBar1_Click(System::Object^ sender, System::EventAr
 private: System::Void PoliGame_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
 	//Esto se llama cuando el form se cierra
 	soniditoTime->Stop();
+}
+private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

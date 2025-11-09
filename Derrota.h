@@ -70,6 +70,7 @@ namespace Polidash {
 			this->button1->TabIndex = 0;
 			this->button1->Text = L"VOLVER AL MENÚ";
 			this->button1->UseVisualStyleBackColor = false;
+			this->button1->Click += gcnew System::EventHandler(this, &Derrota::button1_Click);
 			// 
 			// Derrota
 			// 
@@ -84,9 +85,15 @@ namespace Polidash {
 			this->MaximizeBox = false;
 			this->Name = L"Derrota";
 			this->Text = L"Polidash: Derrota";
+			this->Load += gcnew System::EventHandler(this, &Derrota::Derrota_Load);
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
+	private: System::Void Derrota_Load(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Close();
+	}
 	};
 }

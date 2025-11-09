@@ -3,8 +3,11 @@
 #include "FiguraJugador.hpp"
 #include "figuritasnpc.hpp"
 
+
 #include <vector>
+
 using std::vector;
+using namespace System::Drawing;
 
 class Juego {
 private:
@@ -15,6 +18,7 @@ private:
 	int tramo;
 	int transcurrido;
 	int maxTiempo;
+	int autoCurrent, autoMax;
 	int figurasPlayerColor;
 	int limitX, limitY;
 
@@ -30,6 +34,7 @@ public:
 		jugador->setTramo(tramo);
 		transcurrido = 0;
 		maxTiempo = 600;
+		autoCurrent = autoMax = 0;
 		limitX = 980;
 		limitY = 593;
 
@@ -87,7 +92,7 @@ public:
 			break;
 		case 2:
 			f = new FiguritasNPC(
-				r->Next(10, limitX-20),
+				r->Next(10, limitX-85),
 				limitY + r->Next(10, 75),
 				r->Next(40, 85),
 				r->Next(0, 3),
@@ -137,9 +142,6 @@ public:
 	void cambioTramo() {
 		Random^ r = gcnew Random();
 		tramo++;
-		if (tramo > 3) {
-			//Codigo loose aquí
-		};
 
 		jugador->setTramo(tramo);
 		if (tramo == 2) {
@@ -198,7 +200,7 @@ public:
 
 			MiniFigInRange(transcurrido, jugador->getY(),
 				maxTiempo, g->VisibleClipBounds.Height,
-				1006, 21, 249 - 10, 60);		//el -10 es para que no se salga del borde
+				1006, 21, 249 - 10, 60-5);		//el -10 es para que no se salga del borde
 			break;
 
 		case 2:
@@ -206,7 +208,7 @@ public:
 
 			MiniFigInRange(jugador->getX(), transcurrido,
 				g->VisibleClipBounds.Width - (g->VisibleClipBounds.Width - 978), maxTiempo,	//Se tiene que tener en cuenta el offset por la interfaz
-				1185, 87, 70, 354-10);
+				1185, 87, 70-7, 354-10);
 			break;
 
 		case 3:
@@ -214,7 +216,7 @@ public:
 
 			MiniFigInRange(maxTiempo - transcurrido, jugador->getY(),
 				maxTiempo, g->VisibleClipBounds.Height,
-				1006, 447, 249-10, 60);
+				1006, 447, 249-10, 60-5);
 			break;
 		}
 
@@ -226,9 +228,15 @@ public:
 		minifigura->draw(g);
 	}
 
-	float Update(Graphics^ g) {
+	int Update(Graphics^ g) {
 		Random^ r = gcnew Random();
+
+		if (tramo > 3) {
+			return 2;	//Derrota
+		};
+
 		//primero hay que mover todo
+
 		jugador->autoMove(limitX, limitY);
 		
 		for (int i = 0; i < figuras.size(); i++) {
@@ -265,8 +273,8 @@ public:
 					jugador->SumaNum(figura->getNum());
 					jugador->setLados(jugador->getLados() + 1);
 					minifigura->setLados(jugador->getLados());
-					if (jugador->getLados() > 10) {
-						jugador->setLados(3);		//Aqui codigo de victoria instantanea
+					if (jugador->getLados() >= 10) {
+						return 1;		//victoria
 					}
 				}
 				else{
@@ -291,7 +299,8 @@ public:
 		transcurrido += 1;
 		if (transcurrido >= maxTiempo) cambioTramo();
 
-		return (float(transcurrido) / float(maxTiempo)) * 100;
+		//return (float(transcurrido) / float(maxTiempo)) * 100;
+		return 0;	//continua
 	}
 
 	void KeyDown(Dir d) {

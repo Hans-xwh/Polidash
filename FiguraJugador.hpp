@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Figura.hpp"
+
 enum Tramo {
     t1 = 1,
     t2,

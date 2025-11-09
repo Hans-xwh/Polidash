@@ -94,10 +94,10 @@ namespace Polidash {
 			this->btn_player->Font = (gcnew System::Drawing::Font(L"Wide Latin", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btn_player->ForeColor = System::Drawing::Color::Yellow;
-			this->btn_player->Location = System::Drawing::Point(605, 256);
-			this->btn_player->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->btn_player->Location = System::Drawing::Point(454, 208);
+			this->btn_player->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->btn_player->Name = L"btn_player";
-			this->btn_player->Size = System::Drawing::Size(457, 103);
+			this->btn_player->Size = System::Drawing::Size(343, 84);
 			this->btn_player->TabIndex = 0;
 			this->btn_player->Text = L"JUGADOR";
 			this->btn_player->UseVisualStyleBackColor = true;
@@ -109,13 +109,14 @@ namespace Polidash {
 			this->btn_auto->Font = (gcnew System::Drawing::Font(L"Wide Latin", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btn_auto->ForeColor = System::Drawing::Color::Yellow;
-			this->btn_auto->Location = System::Drawing::Point(605, 383);
-			this->btn_auto->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->btn_auto->Location = System::Drawing::Point(454, 311);
+			this->btn_auto->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->btn_auto->Name = L"btn_auto";
-			this->btn_auto->Size = System::Drawing::Size(460, 99);
+			this->btn_auto->Size = System::Drawing::Size(345, 80);
 			this->btn_auto->TabIndex = 1;
 			this->btn_auto->Text = L"AUTOMATICO";
 			this->btn_auto->UseVisualStyleBackColor = true;
+			this->btn_auto->Click += gcnew System::EventHandler(this, &PoliStart::btn_auto_Click);
 			// 
 			// label1
 			// 
@@ -125,9 +126,10 @@ namespace Polidash {
 				static_cast<System::Byte>(0)));
 			this->label1->ForeColor = System::Drawing::Color::Yellow;
 			this->label1->ImageAlign = System::Drawing::ContentAlignment::BottomRight;
-			this->label1->Location = System::Drawing::Point(511, 50);
+			this->label1->Location = System::Drawing::Point(383, 41);
+			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(612, 110);
+			this->label1->Size = System::Drawing::Size(493, 88);
 			this->label1->TabIndex = 2;
 			this->label1->Text = L"/PoliDash\\";
 			this->label1->Click += gcnew System::EventHandler(this, &PoliStart::label1_Click);
@@ -137,10 +139,10 @@ namespace Polidash {
 			this->pictureBox1->BackColor = System::Drawing::Color::Yellow;
 			this->pictureBox1->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.BackgroundImage")));
 			this->pictureBox1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->pictureBox1->Location = System::Drawing::Point(337, 50);
-			this->pictureBox1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->pictureBox1->Location = System::Drawing::Point(253, 41);
+			this->pictureBox1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(195, 155);
+			this->pictureBox1->Size = System::Drawing::Size(146, 126);
 			this->pictureBox1->TabIndex = 3;
 			this->pictureBox1->TabStop = false;
 			// 
@@ -150,10 +152,10 @@ namespace Polidash {
 			this->button2->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button2.BackgroundImage")));
 			this->button2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->button2->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->button2->Location = System::Drawing::Point(46, 361);
-			this->button2->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->button2->Location = System::Drawing::Point(34, 293);
+			this->button2->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(287, 154);
+			this->button2->Size = System::Drawing::Size(215, 125);
 			this->button2->TabIndex = 5;
 			this->button2->UseVisualStyleBackColor = false;
 			this->button2->Click += gcnew System::EventHandler(this, &PoliStart::button2_Click);
@@ -166,9 +168,10 @@ namespace Polidash {
 				static_cast<System::Byte>(0)));
 			this->label2->ForeColor = System::Drawing::Color::Yellow;
 			this->label2->ImageAlign = System::Drawing::ContentAlignment::BottomRight;
-			this->label2->Location = System::Drawing::Point(707, 179);
+			this->label2->Location = System::Drawing::Point(530, 145);
+			this->label2->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(251, 26);
+			this->label2->Size = System::Drawing::Size(210, 21);
 			this->label2->TabIndex = 6;
 			this->label2->Text = L"Elige una opción..";
 			// 
@@ -178,10 +181,10 @@ namespace Polidash {
 			this->button3->Font = (gcnew System::Drawing::Font(L"Wide Latin", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button3->ForeColor = System::Drawing::Color::Yellow;
-			this->button3->Location = System::Drawing::Point(447, 515);
-			this->button3->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->button3->Location = System::Drawing::Point(335, 418);
+			this->button3->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(751, 45);
+			this->button3->Size = System::Drawing::Size(563, 37);
 			this->button3->TabIndex = 7;
 			this->button3->Text = L"INSTRUCCIONES";
 			this->button3->UseVisualStyleBackColor = true;
@@ -191,9 +194,10 @@ namespace Polidash {
 			// 
 			this->button4->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->button4->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->button4->Location = System::Drawing::Point(24, 535);
+			this->button4->Location = System::Drawing::Point(18, 435);
+			this->button4->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(141, 40);
+			this->button4->Size = System::Drawing::Size(106, 32);
 			this->button4->TabIndex = 8;
 			this->button4->Text = L"Play Music";
 			this->button4->UseVisualStyleBackColor = false;
@@ -203,9 +207,10 @@ namespace Polidash {
 			// 
 			this->button5->BackColor = System::Drawing::SystemColors::ControlText;
 			this->button5->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->button5->Location = System::Drawing::Point(204, 534);
+			this->button5->Location = System::Drawing::Point(153, 434);
+			this->button5->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->button5->Name = L"button5";
-			this->button5->Size = System::Drawing::Size(145, 41);
+			this->button5->Size = System::Drawing::Size(109, 33);
 			this->button5->TabIndex = 9;
 			this->button5->Text = L"Stop Music";
 			this->button5->UseVisualStyleBackColor = false;
@@ -213,12 +218,12 @@ namespace Polidash {
 			// 
 			// PoliStart
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->ClientSize = System::Drawing::Size(1421, 606);
+			this->ClientSize = System::Drawing::Size(1066, 492);
 			this->Controls->Add(this->button5);
 			this->Controls->Add(this->button4);
 			this->Controls->Add(this->button3);
@@ -230,7 +235,7 @@ namespace Polidash {
 			this->Controls->Add(this->btn_player);
 			this->ForeColor = System::Drawing::SystemColors::ControlText;
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
-			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->MaximizeBox = false;
 			this->Name = L"PoliStart";
 			this->Text = L"PoliDash: Menu";
@@ -242,7 +247,7 @@ namespace Polidash {
 #pragma endregion
 	private: System::Void btn_player_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Hide();
-		PoliGame^ game = gcnew PoliGame();
+		PoliGame^ game = gcnew PoliGame(false);
 		sonidito->Stop();
 		game->ShowDialog();
 		this->Show();
@@ -273,6 +278,13 @@ private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e
 }
 private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
 	sonidito->Stop();
+}
+private: System::Void btn_auto_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Hide();
+	PoliGame^ game = gcnew PoliGame(true);
+	sonidito->Stop();
+	game->ShowDialog();
+	this->Show();
 }
 };
 }
