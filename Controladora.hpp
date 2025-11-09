@@ -21,20 +21,21 @@ private:
 public:
 	Juego() {
 		Random^ r = gcnew Random();
-		jugador = new Jugador(700, 10, r->Next(0, 3));
+		jugador = new Jugador(40, 10, r->Next(0, 3));
 		minifigura = new Figura(10, 10, 10, jugador->getColor());
 		jugador->setSpeed(10);
 		figurasPlayerColor = 0;
 		maxFiguras = 5;
 		tramo = 1;
+		jugador->setTramo(tramo);
 		transcurrido = 0;
 		maxTiempo = 600;
-		limitX = 800;
-		limitY = 600;
+		limitX = 980;
+		limitY = 593;
 
 		for (int i = 0; i < maxFiguras; i++) {
-			FiguritasNPC* f = new FiguritasNPC(
-				r->Next(50, 300),
+			/*FiguritasNPC* f = new FiguritasNPC(
+				-r->Next(10,200),
 				r->Next(50, 300),
 				r->Next(40, 85),
 				r->Next(0, 3),
@@ -48,11 +49,13 @@ public:
 				while (f->getColor() == jugador->getColor()) {
 					f->setColor(r->Next(0, 3));
 				}
-			}
+			}*/
+			figuras.push_back(generaFigura());
 			_sleep(16);
 		}
 	}
 	~Juego() {
+		delete minifigura;
 		delete jugador;
 		for (FiguritasNPC* figura : figuras) {
 			delete figura;
@@ -64,6 +67,100 @@ public:
 		//Es hora de mapear en rango.
 		minifigura->setX(nX + (float(oX) / float(oW)) * nW);
 		minifigura->setY(nY + (float(oY) / float(oH)) * nH);
+	}
+
+	FiguritasNPC* generaFigura() { //retorna una figura apropiada para el tramo actual
+		Random^ r = gcnew Random();
+		FiguritasNPC* f;
+
+		switch (tramo) {
+		case 1:
+			f = new FiguritasNPC(
+				r->Next(limitX, limitX+100),
+				r->Next(50, 500),
+				r->Next(40, 85),
+				r->Next(0, 3),
+				false,	//Esto hay que cambiarlo para que compruebe si es igual al jugador
+				1);
+			f->setDx(-1);
+			f->setDy(0);
+			break;
+		case 2:
+			f = new FiguritasNPC(
+				r->Next(10, 980+10),
+				-r->Next(10, 75),
+				r->Next(40, 85),
+				r->Next(0, 3),
+				false,	//Esto hay que cambiarlo para que compruebe si es igual al jugador
+				1);
+			f->setDx(0);
+			f->setDy(1);
+			break;
+		case 3:
+			f = new FiguritasNPC(
+				-75,
+				r->Next(50, 300),
+				r->Next(40, 85),
+				r->Next(0, 3),
+				false,	//Esto hay que cambiarlo para que compruebe si es igual al jugador
+				1);
+			f->setDx(1);
+			f->setDy(0);
+			break;
+		default:
+			f = new FiguritasNPC(
+				-75,
+				r->Next(50, 300),
+				r->Next(40, 85),
+				r->Next(0, 3),
+				false,	//Esto hay que cambiarlo para que compruebe si es igual al jugador
+				1);
+			break;
+		}		
+
+		//Hay que cuidar que no sea del mismo color que el jugador si se han alcanzado 9 lados 
+		if (f->getColor() == jugador->getColor()) {
+			figurasPlayerColor++;
+		}
+
+		if (tramo != 3 && figurasPlayerColor + jugador->getLados() > 9) {
+			while (f->getColor() == jugador->getColor()) {
+				f->setColor(r->Next(0, 3));
+			}
+			figurasPlayerColor--;
+		}
+		return f;
+	}
+
+	void cambioTramo() {
+		Random^ r = gcnew Random();
+		tramo++;
+		if (tramo > 3) {
+			//Codigo loose aquí
+		};
+
+		jugador->setTramo(tramo);
+		if (tramo == 2) {
+			jugador->setX(limitX / 2);
+			jugador->setY(400);
+		}
+		else {
+			jugador->setX(limitX - 150);
+			jugador->setY(limitY / 2);
+		}
+		transcurrido = 0;
+		//Limpiar figuras y regenerar
+		for (FiguritasNPC* figura : figuras) {
+			delete figura;
+		}
+		figuras.clear();
+		figurasPlayerColor = 0;
+
+		while (figuras.size() < maxFiguras) {
+			figuras.push_back(generaFigura());
+			_sleep(16);
+		}
+
 	}
 
 	void DrawAll(Graphics^ g) {
@@ -138,15 +235,18 @@ public:
 
 			//comprobar si se sale de pantalla
 			
-			if (tramo == 1 && figura->getX() > 980) {
+			if (tramo == 3 && figura->getX() > 980) {
+				if (figura->getColor() == jugador->getColor()) figurasPlayerColor--;
 				delete figura;
 				figuras.erase(figuras.begin() + i);
 			}
-			else if(tramo == 2 && figura->getY() + figura->getSize() < 0){
+			else if(tramo == 2 && figura->getY() + figura->getSize() > g->VisibleClipBounds.Height){
+				if (figura->getColor() == jugador->getColor()) figurasPlayerColor--;
 				delete figura;
 				figuras.erase(figuras.begin() + i);
 			}
-			else if (tramo == 3 && figura->getX() + figura->getSize() < 0) {
+			else if (tramo == 1 && figura->getX() + figura->getSize() < 0) {
+				if (figura->getColor() == jugador->getColor()) figurasPlayerColor--;
 				delete figura;
 				figuras.erase(figuras.begin() + i);
 			}
@@ -178,34 +278,17 @@ public:
 				}
 				delete figura;
 				figuras.erase(figuras.begin() + i);
+				i--;
 			}
 		}
 
 		while (figuras.size() < maxFiguras) {
-			FiguritasNPC* f = new FiguritasNPC(
-				-75,
-				r->Next(50, 300),
-				r->Next(40, 85),
-				r->Next(0, 3),
-				false,	//Esto hay que cambiarlo para que compruebe si es igual al jugador
-				1);
-
-			//Hay que cuidar que no sea del mismo color que el jugador si se han alcanzado 9 lados 
-			if (f->getColor() == jugador->getColor()) {
-				figurasPlayerColor++;
-			}
-
-			if(tramo != 3 && figurasPlayerColor + jugador->getLados() >9){
-				while(f->getColor() == jugador->getColor()){
-					f->setColor(r->Next(0, 3));
-				}
-				figurasPlayerColor--;
-			}
-
-			figuras.push_back(f);
+			figuras.push_back(generaFigura());
 		}
 
 		transcurrido += 1;
+		if (transcurrido >= maxTiempo) cambioTramo();
+
 		return (float(transcurrido) / float(maxTiempo)) * 100;
 	}
 

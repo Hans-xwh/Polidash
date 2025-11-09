@@ -24,6 +24,7 @@ public:
         switch (tramo) {
         case t1:
         case t3:
+            dx = 0;
             if (tecla == ARRIBA) {
                 dy = -speed;
             }
@@ -32,6 +33,7 @@ public:
             }
             break;
         case t2:
+            dy = 0;
             if (tecla == IZQUIERDA) {
                 dx = -speed;
             }
@@ -46,6 +48,8 @@ public:
         x += dx;
         y += dy;
     }
+
+	void setTramo(int T) { tramo = T; }
 
 };
 
