@@ -46,11 +46,9 @@ public:
 	}
 
 	array<Point>^ damePuntos() {	//basado en la figura actual retorna los puntos convertidos a coordenadas globales
-		//evita dibujar poligonos invalidos
-		if (shape < TRIANGULO || shape>DECAGONO) {
-			shape = TRIANGULO;	
+		if (shape < 3 || shape>10) {
+			shape = TRIANGULO;	//evita dibujar poligonos invalidos
 		}
-		if (size < 10) { size = 10;}
 
 		//Devuelve los puntos en el sentido contrario a las agujas del reloj
 		if (shape == TRIANGULO) {
