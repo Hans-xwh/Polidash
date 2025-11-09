@@ -14,18 +14,18 @@ private:
  	bool isPowerUp;
 
 public:
-    FiguritasNPC(int X, int Y,int S, int C, bool powerUp, int tramo) : Figura(X, Y, S, C){
+    FiguritasNPC(int X, int Y, int S, int C, bool powerUp, int tramo) : Figura(X, Y, S, C) {
         Random^ r = gcnew Random();
         isPowerUp = powerUp;
         this->tramo = tramo;
         numero = r->Next(1, 5);
         shape = Shapes(r->Next(3, 10));
-	    dx = dy = 0;
+        dx = dy = 0;
         size = S;
-	}
+    }
 
     void autoMove() override {
-         switch (tramo) {
+        switch (tramo) {
         case 1:
             dx = speed;
             dy = 0;
@@ -42,7 +42,7 @@ public:
             dx = speed;
             dy = 0;
             break;
-         }
+        }
         x += dx;
         y += dy;
     }
