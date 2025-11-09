@@ -10,11 +10,10 @@ enum Tramo {
 class Jugador : public Figura {
 
 private:
-    Tramo t;
+    int tramo;
 
 public:
-	Jugador(int X, int Y, int C, Tramo tInicial = t1) : Figura(X, Y, 50, C, Shapes::TRIANGULO), t(tInicial) {
-
+	Jugador(int X, int Y, int C, int T = 1) : Figura(X, Y, 50, C, Shapes::TRIANGULO), tramo(T) {
         dx = dy = 0;
 
 	}
@@ -22,7 +21,7 @@ public:
         dx = 0; dy = 0;
 
         //t1 y t3 van al mismo lao
-        switch (t) {
+        switch (tramo) {
         case t1:
         case t3:
             if (tecla == ARRIBA) {

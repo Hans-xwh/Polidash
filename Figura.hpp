@@ -181,13 +181,22 @@ public:
 	void setDy(int DY) { dy = DY; }
 	void setSize(int S) { size = S; }
 	void setNumero(int N) { numero = N; }
-	void SumaNum(int N) { numero += N; }
+	void SumaNum(int N) { 
+		numero += N;
+		if (numero < 0) numero = 0;
+	}
+	void setLados(int L) {
+		if (L < 3 || L>10) L = 3;
+
+		shape = Shapes(L);
+	}
 	
 
 	int getX() {return x;}
 	int getY() { return y; }
 	int getNum() { return numero; }
 	int getColor() { return color; }
+	int getLados() { return int(shape); }
 
 	Rectangle getRect() {
 		return Rectangle(x, y, size, size);

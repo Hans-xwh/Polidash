@@ -51,9 +51,9 @@ namespace Polidash {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		Figura* testFig;
-		FiguritasNPC* pruebita;
-		Jugador* jugador;
+		//Figura* testFig;
+		//FiguritasNPC* pruebita;
+		//Jugador* jugador;
 		Juego* juego;
 		Dir teclapulsada;
 
@@ -73,6 +73,7 @@ namespace Polidash {
 			// timer1
 			// 
 			this->timer1->Enabled = true;
+			this->timer1->Interval = 33;
 			this->timer1->Tick += gcnew System::EventHandler(this, &PoliGame::timer1_Tick);
 			// 
 			// PoliGame

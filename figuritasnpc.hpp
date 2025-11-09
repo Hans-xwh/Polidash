@@ -10,7 +10,6 @@ class FiguritasNPC : public Figura
 {
 
 private:
-	int value;
 	int tramo;
  	bool isPowerUp;
 
@@ -19,7 +18,7 @@ public:
         Random^ r = gcnew Random();
         isPowerUp = powerUp;
         this->tramo = tramo;
-        value = r->Next(0, 9);
+        numero = r->Next(1, 5);
         shape = Shapes(r->Next(3, 10));
 	    dx = dy = 0;
         size = S;
@@ -48,14 +47,6 @@ public:
         y += dy;
     }
 
-    /*void draw(Graphics^ g) {    //No me implementes otra funcion draw, no es necesaria. *Emoji calavera*
-        array<Point>^ puntos = damePuntos();
-        SolidBrush^ solid = gcnew SolidBrush();
-        g->FillPolygon(solid, puntos);
-        g->DrawPolygon(Pens::Black, puntos);
-    }*/
-
-    int getValue() { return value; }
     bool getIsPowerUp() { return isPowerUp;  }
     int getTramo() { return tramo; }
 
