@@ -41,6 +41,12 @@ namespace Polidash {
 			d = gcnew Derrota();
 			v = gcnew Victoria();
 			result = 0;
+
+			playa = gcnew Bitmap(gcnew System::String("img/playa.png"));
+			nubesP = gcnew Bitmap(gcnew System::String("img/nubes.png"));
+			muchasNubes = gcnew Bitmap(gcnew System::String("img/muchasNubes.png"));
+			bosque = gcnew Bitmap(gcnew System::String("img/bosque.png"));
+			numbesB = gcnew Bitmap(gcnew System::String("img/nubes2.png"));
 		}
 
 	protected:
@@ -53,6 +59,11 @@ namespace Polidash {
 			{
 				delete components;
 			}
+			delete playa;
+			delete nubesP;
+			delete muchasNubes;
+			delete bosque;
+			delete numbesB;
 		}
 	private: System::Windows::Forms::Timer^ timer1;
 	protected:
@@ -61,6 +72,12 @@ namespace Polidash {
 	private:
 		/// <summary>
 		/// Required designer variable.
+		/// 
+		Bitmap^ playa;
+		Bitmap^ nubesP;
+		Bitmap^ muchasNubes;
+		Bitmap^ bosque;
+		Bitmap^ numbesB;
 		/// </summary>
 		//Figura* testFig;
 		//FiguritasNPC* pruebita;
@@ -68,21 +85,15 @@ namespace Polidash {
 		bool autoM;
 		Juego* juego;
 		bool isMusicActiva;
+		int result;
+		Victoria^ v;
+		Derrota^ d;
+		Dir teclapulsada;
 
 
 	private: System::Windows::Forms::Label^ label2;
 
-
-
-
-
-
-
-
-		   int result;
-		   Victoria^ v;
-		   Derrota^ d;
-		   Dir teclapulsada;
+		   
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::Label^ label5;
@@ -129,17 +140,16 @@ namespace Polidash {
 			// timer1
 			// 
 			this->timer1->Enabled = true;
-			this->timer1->Interval = 16;
+			this->timer1->Interval = 1;
 			this->timer1->Tick += gcnew System::EventHandler(this, &PoliGame::timer1_Tick);
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
 			this->label2->BackColor = System::Drawing::SystemColors::Window;
-			this->label2->Location = System::Drawing::Point(1340, 427);
-			this->label2->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label2->Location = System::Drawing::Point(1005, 347);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(75, 16);
+			this->label2->Size = System::Drawing::Size(60, 13);
 			this->label2->TabIndex = 2;
 			this->label2->Text = L"Velocidad: ";
 			// 
@@ -147,10 +157,9 @@ namespace Polidash {
 			// 
 			this->label3->AutoSize = true;
 			this->label3->BackColor = System::Drawing::SystemColors::Window;
-			this->label3->Location = System::Drawing::Point(1340, 239);
-			this->label3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label3->Location = System::Drawing::Point(1005, 194);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(48, 16);
+			this->label3->Size = System::Drawing::Size(39, 13);
 			this->label3->TabIndex = 3;
 			this->label3->Text = L"Lados:";
 			// 
@@ -158,10 +167,9 @@ namespace Polidash {
 			// 
 			this->label4->AutoSize = true;
 			this->label4->BackColor = System::Drawing::SystemColors::Window;
-			this->label4->Location = System::Drawing::Point(1340, 297);
-			this->label4->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label4->Location = System::Drawing::Point(1005, 241);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(58, 16);
+			this->label4->Size = System::Drawing::Size(47, 13);
 			this->label4->TabIndex = 4;
 			this->label4->Text = L"Numero:";
 			// 
@@ -169,10 +177,9 @@ namespace Polidash {
 			// 
 			this->label5->AutoSize = true;
 			this->label5->BackColor = System::Drawing::SystemColors::Window;
-			this->label5->Location = System::Drawing::Point(1340, 356);
-			this->label5->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label5->Location = System::Drawing::Point(1005, 289);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(92, 16);
+			this->label5->Size = System::Drawing::Size(75, 13);
 			this->label5->TabIndex = 5;
 			this->label5->Text = L"Sum. Angulos:";
 			// 
@@ -180,10 +187,9 @@ namespace Polidash {
 			// 
 			this->lbl_lado->AutoSize = true;
 			this->lbl_lado->BackColor = System::Drawing::SystemColors::Window;
-			this->lbl_lado->Location = System::Drawing::Point(1483, 239);
-			this->lbl_lado->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->lbl_lado->Location = System::Drawing::Point(1112, 194);
 			this->lbl_lado->Name = L"lbl_lado";
-			this->lbl_lado->Size = System::Drawing::Size(23, 16);
+			this->lbl_lado->Size = System::Drawing::Size(21, 13);
 			this->lbl_lado->TabIndex = 6;
 			this->lbl_lado->Text = L"XX";
 			// 
@@ -191,10 +197,9 @@ namespace Polidash {
 			// 
 			this->lbl_num->AutoSize = true;
 			this->lbl_num->BackColor = System::Drawing::SystemColors::Window;
-			this->lbl_num->Location = System::Drawing::Point(1483, 297);
-			this->lbl_num->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->lbl_num->Location = System::Drawing::Point(1112, 241);
 			this->lbl_num->Name = L"lbl_num";
-			this->lbl_num->Size = System::Drawing::Size(23, 16);
+			this->lbl_num->Size = System::Drawing::Size(21, 13);
 			this->lbl_num->TabIndex = 7;
 			this->lbl_num->Text = L"XX";
 			// 
@@ -202,10 +207,9 @@ namespace Polidash {
 			// 
 			this->lbl_angulo->AutoSize = true;
 			this->lbl_angulo->BackColor = System::Drawing::SystemColors::Window;
-			this->lbl_angulo->Location = System::Drawing::Point(1483, 356);
-			this->lbl_angulo->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->lbl_angulo->Location = System::Drawing::Point(1112, 289);
 			this->lbl_angulo->Name = L"lbl_angulo";
-			this->lbl_angulo->Size = System::Drawing::Size(23, 16);
+			this->lbl_angulo->Size = System::Drawing::Size(21, 13);
 			this->lbl_angulo->TabIndex = 8;
 			this->lbl_angulo->Text = L"XX";
 			// 
@@ -213,10 +217,9 @@ namespace Polidash {
 			// 
 			this->lbl_velocidad->AutoSize = true;
 			this->lbl_velocidad->BackColor = System::Drawing::SystemColors::Window;
-			this->lbl_velocidad->Location = System::Drawing::Point(1483, 427);
-			this->lbl_velocidad->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->lbl_velocidad->Location = System::Drawing::Point(1112, 347);
 			this->lbl_velocidad->Name = L"lbl_velocidad";
-			this->lbl_velocidad->Size = System::Drawing::Size(23, 16);
+			this->lbl_velocidad->Size = System::Drawing::Size(21, 13);
 			this->lbl_velocidad->TabIndex = 9;
 			this->lbl_velocidad->Text = L"XX";
 			// 
@@ -224,9 +227,10 @@ namespace Polidash {
 			// 
 			this->label6->AutoSize = true;
 			this->label6->BackColor = System::Drawing::SystemColors::Window;
-			this->label6->Location = System::Drawing::Point(1331, 657);
+			this->label6->Location = System::Drawing::Point(998, 534);
+			this->label6->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(308, 16);
+			this->label6->Size = System::Drawing::Size(246, 13);
 			this->label6->TabIndex = 1;
 			this->label6->Text = L"Pulsa Z para activar y C para desactivar la música.";
 			this->label6->Click += gcnew System::EventHandler(this, &PoliGame::label1_Click);
@@ -237,10 +241,9 @@ namespace Polidash {
 			this->lbl_pausa->BackColor = System::Drawing::SystemColors::Window;
 			this->lbl_pausa->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 36, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->lbl_pausa->Location = System::Drawing::Point(445, 198);
-			this->lbl_pausa->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->lbl_pausa->Location = System::Drawing::Point(334, 161);
 			this->lbl_pausa->Name = L"lbl_pausa";
-			this->lbl_pausa->Size = System::Drawing::Size(340, 69);
+			this->lbl_pausa->Size = System::Drawing::Size(275, 55);
 			this->lbl_pausa->TabIndex = 10;
 			this->lbl_pausa->Text = L"EN PAUSA";
 			this->lbl_pausa->Visible = false;
@@ -249,9 +252,10 @@ namespace Polidash {
 			// 
 			this->label1->AutoSize = true;
 			this->label1->BackColor = System::Drawing::SystemColors::Window;
-			this->label1->Location = System::Drawing::Point(1389, 686);
+			this->label1->Location = System::Drawing::Point(1042, 557);
+			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(204, 16);
+			this->label1->Size = System::Drawing::Size(160, 13);
 			this->label1->TabIndex = 11;
 			this->label1->Text = L"Pulsa Espacio para poner pausa";
 			this->label1->Click += gcnew System::EventHandler(this, &PoliGame::label1_Click_1);
@@ -259,18 +263,19 @@ namespace Polidash {
 			// pictureBox1
 			// 
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(1343, 129);
+			this->pictureBox1->Location = System::Drawing::Point(1007, 105);
+			this->pictureBox1->Margin = System::Windows::Forms::Padding(2);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(190, 77);
+			this->pictureBox1->Size = System::Drawing::Size(142, 63);
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox1->TabIndex = 12;
 			this->pictureBox1->TabStop = false;
 			// 
 			// PoliGame
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1703, 730);
+			this->ClientSize = System::Drawing::Size(1277, 593);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->lbl_pausa);
@@ -285,7 +290,7 @@ namespace Polidash {
 			this->Controls->Add(this->label6);
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->KeyPreview = true;
-			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->Margin = System::Windows::Forms::Padding(2);
 			this->MaximizeBox = false;
 			this->Name = L"PoliGame";
 			this->Text = L"PoliDash: Game";
@@ -315,7 +320,7 @@ namespace Polidash {
 		try {
 
 			//Comprobacion de victoria
-			result = juego->Update(bCanvas->Graphics);
+			result = juego->checkWin();
 			if (result == 1) {
 				this->timer1->Enabled = false;
 				soniditoTime->Stop();
@@ -334,6 +339,8 @@ namespace Polidash {
 				return;
 			}
 
+			juego->Update(bCanvas->Graphics);
+
 			//Actualizar labels
 			lbl_lado->Text = Convert::ToString(juego->getladosJugador());
 			lbl_num->Text = Convert::ToString(juego->getNumeroJugador());
@@ -342,7 +349,7 @@ namespace Polidash {
 
 
 
-
+			juego->drawFondo(bCanvas->Graphics, playa, nubesP, muchasNubes, bosque, numbesB);
 			juego->DrawAll(bCanvas->Graphics);
 
 			//mover y dibujar

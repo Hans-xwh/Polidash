@@ -22,6 +22,7 @@ private:
 	int figurasPlayerColor;
 	int limitX, limitY;
 	bool autoM;
+	int win;
 
 public:
 	Juego(bool aM) {
@@ -148,6 +149,10 @@ public:
 		Random^ r = gcnew Random();
 		tramo++;
 
+		if (tramo > 3) {
+			win = 2;
+		};
+
 		jugador->setSpeed(r->Next(8, 11));
 
 		jugador->setTramo(tramo);
@@ -179,22 +184,30 @@ public:
 		}
 
 	}
+	void drawFondo(Graphics^ g, Bitmap^ playa, Bitmap^ nubesP, Bitmap^ muchasN, Bitmap^ bosque, Bitmap^ nubesB) {
+		switch (tramo) {
+		case 1:
+			g->Clear(Color::Lavender);
+			g->DrawImage(bosque, 0, -200, 3800/2, 2400/2);
+			g->DrawImage(nubesB, -int((float(transcurrido)/float(maxTiempo))*400.0f), -200, 3800 / 2, 2400 / 2);
+
+			break;
+		case 2:
+			g->Clear(Color::LightCyan);
+			//g->DrawImage(bosque, 0, -200, 3800 / 2, 2400 / 2);
+			g->DrawImage(muchasN, 0, -200-int((float(transcurrido) / float(maxTiempo)) * 400.0f), 1900 / 2, 2400);
+			break;
+		case 3:
+			g->Clear(Color::LightGreen);
+			g->DrawImage(playa, 0, 0, 3800/2, 1200/2);
+			g->DrawImage(nubesP, -400 + int((float(transcurrido) / float(maxTiempo)) * 400.0f), 100, 3800/2, 1200/2);
+			break;
+		}
+	}
 
 	void DrawAll(Graphics^ g) {
 		Random^ r = gcnew Random();
 		//orden de dibujado: Figuras -> Jugador -> Minimapa -> UI
-
-		switch (tramo) {
-		case 1:
-			g->Clear(Color::Lavender);
-			break;
-		case 2:
-			g->Clear(Color::LightCyan);
-			break;
-		case 3:
-			g->Clear(Color::LightGreen);
-			break;
-		}
 
 		Brush^ brocha = Brushes::Aqua;
 
@@ -240,11 +253,11 @@ public:
 		minifigura->draw(g);
 	}
 
-	int Update(Graphics^ g) {
+	void Update(Graphics^ g) {
 		Random^ r = gcnew Random();
 
 		if (tramo > 3) {
-			return 2;	//Derrota
+			win = 2;
 		};
 
 		//movimiento automatico
@@ -296,7 +309,7 @@ public:
 					jugador->setLados(jugador->getLados() + 1);
 					minifigura->setLados(jugador->getLados());
 					if (jugador->getLados() >= 10) {
-						return 1;		//victoria
+						win = 1;		//victoria
 					}
 				}
 				else{
@@ -322,7 +335,7 @@ public:
 		if (transcurrido >= maxTiempo) cambioTramo();
 
 		//return (float(transcurrido) / float(maxTiempo)) * 100;
-		return 0;	//continua
+		return;	//continua
 	}
 
 	void KeyDown(Dir d) {
@@ -346,6 +359,10 @@ public:
 		if (!autoM) {
 			jugador->mover(NADA);
 		}
+	}
+
+	int checkWin() {
+		return win;
 	}
 
 

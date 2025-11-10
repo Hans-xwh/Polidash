@@ -19,7 +19,6 @@ namespace Polidash {
 	public ref class PoliStart : public System::Windows::Forms::Form
 	{
 	public:
-
 		SoundPlayer^ sonidito = gcnew SoundPlayer("Audio/menuLoop.wav");
 
 		PoliStart(void)
@@ -51,6 +50,7 @@ namespace Polidash {
 	private: System::Windows::Forms::Button^ button3;
 	private: System::Windows::Forms::Button^ button4;
 	private: System::Windows::Forms::Button^ button5;
+	private: System::Windows::Forms::Label^ label3;
 
 
 
@@ -83,6 +83,7 @@ namespace Polidash {
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->button5 = (gcnew System::Windows::Forms::Button());
+			this->label3 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -214,6 +215,20 @@ namespace Polidash {
 			this->button5->UseVisualStyleBackColor = false;
 			this->button5->Click += gcnew System::EventHandler(this, &PoliStart::button5_Click);
 			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Cursor = System::Windows::Forms::Cursors::Cross;
+			this->label3->Font = (gcnew System::Drawing::Font(L"Broadway", 8.8F, System::Drawing::FontStyle::Bold));
+			this->label3->ForeColor = System::Drawing::Color::Yellow;
+			this->label3->ImageAlign = System::Drawing::ContentAlignment::BottomRight;
+			this->label3->Location = System::Drawing::Point(788, 469);
+			this->label3->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(267, 14);
+			this->label3->TabIndex = 10;
+			this->label3->Text = L"Debes usar escala de pantalla 100%";
+			// 
 			// PoliStart
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -222,6 +237,7 @@ namespace Polidash {
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(1066, 492);
+			this->Controls->Add(this->label3);
 			this->Controls->Add(this->button5);
 			this->Controls->Add(this->button4);
 			this->Controls->Add(this->button3);
@@ -248,6 +264,7 @@ namespace Polidash {
 		PoliGame^ game = gcnew PoliGame(false);
 		sonidito->Stop();
 		game->ShowDialog();
+		delete game;
 		this->Show();
 	}
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -256,6 +273,7 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	this->Hide();
 	Creditos^ game = gcnew Creditos();
 	game->ShowDialog();
+	delete game;
 	this->Show();
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
