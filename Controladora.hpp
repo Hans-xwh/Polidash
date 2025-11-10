@@ -188,7 +188,7 @@ public:
 		switch (tramo) {
 		case 1:
 			g->Clear(Color::Lavender);
-			g->DrawImage(bosque, 0, -200, 3800/2, 2400/2);
+			g->DrawImage(bosque, 0, -300, 1900, 1200);
 			g->DrawImage(nubesB, -int((float(transcurrido)/float(maxTiempo))*400.0f), -200, 3800 / 2, 2400 / 2);
 
 			break;
